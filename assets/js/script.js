@@ -211,7 +211,11 @@ function beginFetchingQuotes() {
 
 // executed one time once page loads
 function init() {
-    beginFetchingQuotes();
+    // beginFetchingQuotes();
+
+    $(document).ready(function(){
+        $('.modal').modal();
+      });
 
     $('#playButton').on("click", startGame);
 }
