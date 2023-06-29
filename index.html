@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odd Quote Out</title>
 
+    <!-- Google Icons for Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -78,9 +81,90 @@
 
         </section>
 
-        <!-- Game -->
-        <section>
+        <!-- Loading -->
+        <section id="loading-section" class="hide">
+            <div class="valign-wrapper">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
 
+        <!-- Game -->
+        <section id="game-section" class="hide">
+            <div class="container">
+
+                <!-- Game header -->
+                <header>
+                    <!-- <progress> ii </progress> -->
+                    <div class="progress">
+                        <div id="progress-bar" class="determinate" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            <div class="kanye-head"></div>
+                        </div>
+                    </div>
+
+                    <h1 class="center-align">What would Kanye say?</h1>
+                </header>
+
+                <!-- Game main content -->
+                <main>
+
+                    <!-- first option adjusted by Jacob-->
+                    <!-- <div class="card quote-card">
+                        <div class="card-content">
+                            <p class="quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            <div class="row">
+                                <div class="author-container col s6">
+                                    <p class="author-text">???</p>
+                                </div>
+                                <button class="save-quote-btn">
+                                    <i class="small material-icons"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!--second option created by Saron -->
+                    <!-- <div class="divider"></div>
+                    <div class="section">
+                        <h5><button class="quote-btn">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
+                        </h5></button>
+                        <div id="Author" class="hide">
+                            <p5> Author 2 </p5></div>
+                        <h6></h6>
+                        <a href="my quotes">
+                                <i class="tiny material-icons">bookmark_border</i>
+                        </a>
+                    </div> -->
+                
+                </main>
+
+                <!-- Game footer -->
+                <footer>
+                    <div class="controls">
+                        <button class="btn next-btn">
+                            <div class="valign-wrapper">
+                                Next
+                                <i class="material-icons">arrow_forward</i>
+                            </div>
+                            
+                        </button>
+                        <button id="score-btn" class="score-btn">Current score</button>
+                    </div>
+                </footer>
+            </div>
+
+            
+            
         </section>
 
         <!-- End page -->

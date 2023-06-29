@@ -1,8 +1,9 @@
-const numberOfQuestions = 3;  // number of questions per quiz
+const numberOfQuestions = 10;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
 var currentQuestion = 0;  // keeps track of which question number the player is on
+let answeredQuestion = false;  // keeps track of if user answered question already
 
 var questionLoadInterval;
 const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before checking if quotes are loaded
@@ -20,7 +21,12 @@ class Quote {
 
 
 function hideElement(element) {
-    $(element).css("display", "none");
+    $(element).addClass('hide');
+}
+
+
+function showElement(element) {
+    $(element).removeClass('hide');
 }
 
 
@@ -95,7 +101,7 @@ function fetchKanyeQuotes() {
             var quote = data.quote;
 
             // add punctuation to end of quote so it fits in better
-            const endsWithPunctuation = quote.endsWith('.') || quote.endsWith('!') || quote.endsWith('!');
+            const endsWithPunctuation = quote.endsWith('.') || quote.endsWith('!') || quote.endsWith('?');
             if (!endsWithPunctuation) { quote = quote + "."; }
 
             // make quote object and add it to Kanye quotes array
@@ -120,18 +126,13 @@ function getSavedQuotes() {
     const savedQuotesFromStorage = localStorage.getItem("savedQuotes");
 
     // if any saved quotes were found
-    if (savedQuotesFromStorage) {
-        return JSON.parse(savedQuotesFromStorage);
-    }
-
-    else {
-        return [];
-    }
+    if (savedQuotesFromStorage) { return JSON.parse(savedQuotesFromStorage); }
+    else { return []; }
 }
 
 
 // saves a quote to local storage
-function saveQuoteToLocalStorage(quoteObject) {
+function saveQuoteToStorage(quoteObject) {
     const savedQuotes = getSavedQuotes();
 
     // cancel action if quote is already in saved quotes
@@ -142,12 +143,87 @@ function saveQuoteToLocalStorage(quoteObject) {
 }
 
 
+// removes a quote to local storage
+function removeQuoteFromStorage(quoteObject) {
+    const savedQuotes = getSavedQuotes();
+
+    // cancel action if quote is NOT in saved quotes
+    const foundQuoteIndex = savedQuotes.findIndex(quote => quote.text === quoteObject.text);
+    if (foundQuoteIndex === -1) { return; }
+
+    savedQuotes.splice(foundQuoteIndex, 1);
+    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));  
+}
+
+
 // handles when a "save quote" button is clicked
 function handleSaveQuoteButtonClick(event) {
+    event.stopPropagation();
+
     const button = $(this);
     const quoteObject = JSON.parse(button.data('quote'));
 
-    saveQuoteToLocalStorage(quoteObject);
+    if (button.attr('data-toggled') === 'true') {
+        button.attr('data-toggled', 'false');
+        removeQuoteFromStorage(quoteObject);
+    }
+    else {
+        button.attr('data-toggled', 'true');
+        saveQuoteToStorage(quoteObject);
+    }
+}
+
+
+function displayCorrectAnswer(quoteCardClicked) {
+    quoteCardClicked.css('background-color', 'var(--correct-green)');
+}
+
+
+function displayIncorrectAnswer(quoteCardClicked) {
+    quoteCardClicked.css('background-color', 'var(--incorrect-red)');
+}
+
+
+// handles when a quote card is click
+function handleQuoteCardClick(event) {
+    // cancel action if question was already answered
+    if (answeredQuestion) { return; }
+
+    answeredQuestion = true;
+    $('.quote-card').map(function() {
+        $(this).removeClass('hoverable');
+    })
+
+    const quoteCard = $(this);
+    const quote = JSON.parse(quoteCard.data('quote'));
+
+    // show the author of each quote
+    $('.author-text').map(function() {
+        const specificQuoteCard = $(this).parents('.quote-card');
+        const author = JSON.parse(specificQuoteCard.data('quote')).author;
+        $(this).text(author);
+    });
+
+    if (quote.author === 'Kanye West') { displayCorrectAnswer(quoteCard); }
+    else { displayIncorrectAnswer(quoteCard); }
+}
+
+
+function endGame() {
+    hideElement($('#game-section'));
+    hideElement($('#loading-section'));
+
+    console.log('END OF GAME!');
+}
+
+
+// updates progress bar display based on a given percent
+function updateProgressBar(percent) {
+    percent = Math.min(percent, 100);  // max number percent can be is 100
+
+    $("#progress-bar").attr('aria-valuenow', percent);
+    $("#progress-bar").css('width', percent + '%');
+    $('#progress-bar .kanye-head').css('left', 'calc(100% - 25px)');
 }
 
 
@@ -186,23 +262,50 @@ function generateQuestionSetArray() {
 
 // generates a question set in the DOM
 function generateQuestionSet(questionSet) {
-    console.log("Question Set:", questionSet);
+    // console.log("Question Set:", questionSet);
 
     for (quote of questionSet) {
-        $('body').append(`<p>${quote.text}</p>`);
-        $('body').append(`<p>- ${quote.author}</p>`);
+        // create quote card
+        const quoteCard = $(`
+        <div class="card quote-card hoverable">
+            <div class="card-content">
+                <p class="quote-text">${quote.text}</p>
+                <div class="row">
+                    <div class="author-container col s6">
+                        <p class="author-text" data-author="">???</p>
+                    </div>
+                </div>
+            </div>
+        </div>`);
+        quoteCard.data('quote', JSON.stringify(quote));
+        quoteCard.on('click', handleQuoteCardClick);
 
-        // generate heart button
-        const saveButton = $('<button>');
-        saveButton.text('Save');
-        saveButton.data('quote', JSON.stringify(quote));
-        saveButton.on('click', handleSaveQuoteButtonClick);
-        $('body').append(saveButton);
+        // set author in quote
+        quoteCard.find('.author-text').attr('data-author', quote.author);
+
+        // create save quote button
+        const saveQuoteButton = $(`
+        <button class="save-quote-btn" data-toggled="false">
+            <i class="small material-icons"></i>
+        </button>`);
+        saveQuoteButton.data('quote', JSON.stringify(quote));
+        saveQuoteButton.on('click', handleSaveQuoteButtonClick);
+
+        quoteCard.find('.row').append(saveQuoteButton);
+        $('#game-section main').append(quoteCard);
     }
 }
 
 
 function startNewQuestion() {
+    // check if last question is finished
+    if (currentQuestion >= numberOfQuestions) { 
+        endGame();
+        return;
+    }
+
+    answeredQuestion = false;
+
     // if enough quotes are loaded for 1 new question
     const enoughQuotesLoaded = (kanyeQuotes.length >= 1) && (otherQuotes.length >= numberOfOtherQuotes);
     if (enoughQuotesLoaded) {
@@ -212,10 +315,18 @@ function startNewQuestion() {
             questionLoadInterval = null;
         }
 
+        // clear out any old quote cards
+        $('#game-section main').empty();
+
         // generate a new question set
         const questionSet = generateQuestionSetArray();
         generateQuestionSet(questionSet);
+
+        hideElement($('#loading-section'));
+        showElement($('#game-section'));
+
         currentQuestion++;
+        updateProgressBar(Math.round((currentQuestion - 1) / numberOfQuestions * 100));
     }
 
     // if more time is needed to load quotes and waiting has not begun
@@ -233,9 +344,11 @@ function startNewQuestion() {
 // begins a new game
 function startGame() {
     currentQuestion = 0;
+    showElement($('#loading-section'));
     startNewQuestion();
 
     hideElement($('#homepage'));
+    
 }
 
 
@@ -261,7 +374,7 @@ function displaySavedQuotes() {
 
 // executed one time once page loads
 function init() {
-    // beginFetchingQuotes();
+    beginFetchingQuotes();
 
     $(document).ready(function(){
         $('.modal').modal();
@@ -269,6 +382,9 @@ function init() {
 
     $('#play-button').on("click", startGame);
     $('#saved-quotes-button').on("click", displaySavedQuotes);
+    $('.next-btn').on('click', startNewQuestion);
+
+    updateProgressBar(30);
 }
 
 
