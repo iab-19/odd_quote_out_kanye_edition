@@ -246,9 +246,16 @@ function beginFetchingQuotes() {
 }
 
 
-// generates
+// generates the quotes from local storage inside the modal
 function displaySavedQuotes() {
+    const containerElement = $('#saved-quotes .saved-quotes-container');
+    containerElement.empty();
 
+    for (quote of getSavedQuotes()) {
+        const quoteElement = $('<blockquote class=".left-align">');
+        quoteElement.html(`${quote.text}<br/> - ${quote.author}`);
+        containerElement.append(quoteElement);
+    }
 }
 
 

@@ -41,3 +41,7 @@ button:hover {
 #how-to-play-button:hover {
     color: var(--main_blue);
 }
+
+.saved-quotes-container {
+    text-align: left;
+}
