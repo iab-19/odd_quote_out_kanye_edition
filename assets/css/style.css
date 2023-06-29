@@ -1,0 +1,43 @@
+:root { --main_blue: #089cd2;
+
+}
+
+* {
+
+}
+
+body {
+    text-align: center;
+}
+
+#homepage {
+
+}
+
+button {
+    width: 20%;
+    height: 40px;
+    background-color: var(--main_blue);
+    color: white;
+    margin: 10px;
+    border: black solid 1px;
+}
+
+button:hover {
+    color: black;
+    cursor: pointer;
+}
+
+#play-button {
+    height: 50px;
+    font-size: 30px;
+}
+
+#how-to-play-button {
+    background-color: white;
+    color: black;
+}
+
+#how-to-play-button:hover {
+    color: var(--main_blue);
+}

@@ -19,7 +19,49 @@
 
     <main>
         <!-- Home page -->
-        <section>
+        <section id="homepage">
+            <header>
+                <h1>Odd Quote Out:</h1>
+                <h1><strong>Kanye </strong>Edition</h1>
+                <h3>What would Kanye say?</h3>
+            </header>
+            
+            <div class="menu">
+                <button id="play-button">Play</button><br>
+                <button id="how-to-play-button" data-target="modal1" class="btn modal-trigger">How to Play</button><br>
+                <button id="saved-quotes-button" class="modal-trigger" data-target="saved-quotes">Saved Quotes</button><br>
+                <a href="#" id="credits-link">Credits</a>
+            </div>
+            
+
+             <!-- How To Play Modal -->
+             <div id="modal1" class="modal">
+                <div class="modal-content">
+                <h4>How to play</h4>
+                <!-- Instructions on how to play -->
+                <p>4 quotes will be displayed on the screen, 3 will be from random famous people and 1 will be from Kanye West <br>
+                You will get 1 point if you correctly guess which one is Kanye's quote. <br>
+                You can also save a quote you like by pressing the bookmark button located on each quote.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+            <!-- Saved Quotes Modal -->
+            <div id="saved-quotes" class="modal">
+                <div class="modal-content">
+                    <h4>Saved Quotes</h4>
+                    <div class="saved-quotes-container">
+                        <p>Hi</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+
 
         </section>
 
