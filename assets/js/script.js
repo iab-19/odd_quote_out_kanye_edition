@@ -115,6 +115,42 @@ function fetchKanyeQuotes() {
 }
 
 
+// returns an array of all quotes saved in local storage
+function getSavedQuotes() {
+    const savedQuotesFromStorage = localStorage.getItem("savedQuotes");
+
+    // if any saved quotes were found
+    if (savedQuotesFromStorage) {
+        return JSON.parse(savedQuotesFromStorage);
+    }
+
+    else {
+        return [];
+    }
+}
+
+
+// saves a quote to local storage
+function saveQuoteToLocalStorage(quoteObject) {
+    const savedQuotes = getSavedQuotes();
+
+    // cancel action if quote is already in saved quotes
+    if (savedQuotes.find(quote => quote.text === quoteObject.text)) { return; }
+
+    savedQuotes.push(quoteObject);
+    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));  
+}
+
+
+// handles when a "save quote" button is clicked
+function handleSaveQuoteButtonClick(event) {
+    const button = $(this);
+    const quoteObject = JSON.parse(button.data('quote'));
+
+    saveQuoteToLocalStorage(quoteObject);
+}
+
+
 // returns an array of a new question set, removing used quotes from their respective arrays
 function generateQuestionSetArray() {
     // get and delete a random Kanye quote
@@ -154,13 +190,14 @@ function generateQuestionSet(questionSet) {
 
     for (quote of questionSet) {
         $('body').append(`<p>${quote.text}</p>`);
-        $('body').append(`<p>    - ${quote.author}</p>`);
+        $('body').append(`<p>- ${quote.author}</p>`);
 
         // generate heart button
-        // const saveButton = $('<button>');
-        // saveButton.text('Save');
-        // saveButton.on('click', handleSaveQuoteButtonClick);
-        // $('body').append(saveButton);
+        const saveButton = $('<button>');
+        saveButton.text('Save');
+        saveButton.data('quote', JSON.stringify(quote));
+        saveButton.on('click', handleSaveQuoteButtonClick);
+        $('body').append(saveButton);
     }
 }
 
@@ -209,9 +246,16 @@ function beginFetchingQuotes() {
 }
 
 
-// generates
+// generates the quotes from local storage inside the modal
 function displaySavedQuotes() {
+    const containerElement = $('#saved-quotes .saved-quotes-container');
+    containerElement.empty();
 
+    for (quote of getSavedQuotes()) {
+        const quoteElement = $('<blockquote class=".left-align">');
+        quoteElement.html(`${quote.text}<br/> - ${quote.author}`);
+        containerElement.append(quoteElement);
+    }
 }
 
 
