@@ -81,16 +81,37 @@
 
         </section>
 
+        <!-- Loading -->
+        <section id="loading-section" class="hide">
+            <div class="valign-wrapper">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
         <!-- Game -->
-        <section id="game-section">
+        <section id="game-section" class="hide">
             <div class="container">
 
                 <!-- Game header -->
                 <header>
-                    <progress> ii </progress>
+                    <!-- <progress> ii </progress> -->
                     <div class="progress">
-                        <div id="testProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="progress-bar" class="determinate" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            <div class="kanye-head"></div>
+                        </div>
                     </div>
+
                     <h1 class="center-align">What would Kanye say?</h1>
                 </header>
 
@@ -130,6 +151,13 @@
                 <!-- Game footer -->
                 <footer>
                     <div class="controls">
+                        <button class="btn next-btn">
+                            <div class="valign-wrapper">
+                                Next
+                                <i class="material-icons">arrow_forward</i>
+                            </div>
+                            
+                        </button>
                         <button id="score-btn" class="score-btn">Current score</button>
                     </div>
                 </footer>

@@ -1,4 +1,8 @@
-:root { --main_blue: #089cd2;
+/* GENERAL */
+:root { 
+    --main_blue: #089cd2;
+    --correct-green: #b2eeb1;
+    --incorrect-red: #ff7d7d;
 
 }
 
@@ -9,6 +13,13 @@
 body {
     
 }
+
+.card .card-content {
+    padding: 20px;
+}
+
+
+/* HOME PAGE */
 
 #homepage {
     text-align: center;
@@ -46,6 +57,43 @@ body {
     text-align: left;
 }
 
+
+/* GAME */
+
+#game-section header {
+    margin-top: 30px;    
+}
+
+#game-section header h1 {
+    font-size: 200%;
+}
+
+.progress {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.kanye-head {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url(../images/kanye-west-head.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(-15deg);
+    bottom: -20px;
+    /* top: 25%; */
+}
+
+.kanye-head::before {
+    content: "";
+    width: 50px;
+    height: 50px;
+    
+}
+
 .quote-text {
     font-size: 120%;
 }
@@ -53,6 +101,10 @@ body {
 .quote-text::before,
 .quote-text::after {
     content: '"';
+}
+
+.quote-text .row {
+    margin-bottom: 0px;
 }
 
 .author-text::before {
@@ -68,12 +120,12 @@ body {
     border: none;
 }
 
-/* Outline bookmark icon when not hovered over */
+/* Outline bookmark icon when not hovered over (and not toggled) */
 .save-quote-btn[data-toggled="false"] .material-icons::before {
     content: "bookmark_border";
 }
 
-/* Fill in bookmark icon when hovered over */
+/* Fill in bookmark icon when hovered over or toggled */
 .save-quote-btn .material-icons:hover::before,
 .save-quote-btn[data-toggled="true"] .material-icons::before {
     content: "bookmark";
