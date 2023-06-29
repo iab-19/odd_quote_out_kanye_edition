@@ -23,23 +23,27 @@
             <h1>Odd Quote Out:</h1>
             <h1><strong>Kanye </strong>Edition</h1>
             <h3>What would Kanye say?</h3>
-            <button id="playButton">Play</button><br>
-            <button id="howToPlayButton">How to Play</button><br>
-            <button id="savedQuotesButton">Saved Quotes</button><br>
-            <a href="#" id="creditsLink">Credits</a>
-
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
+            <button id="play-button">Play</button><br>
+            <button id="how-to-play-button" data-target="modal1" class="btn modal-trigger">How to Play</button><br>
+             <!-- Modal Structure -->
+             <div id="modal1" class="modal">
                 <div class="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
+                <h4>How to play</h4>
+                <!-- Instructions on how to play -->
+                <p>4 quotes will be displayed on the screen, 3 will be from random famous people and 1 will be from Kanye West <br>
+                You will get 1 point if you correctly guess which one is Kanye's quote</p>
                 </div>
                 <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                 </div>
             </div>
+
+            <button id="saved-quotes-button">Saved Quotes</button><br>
+            <a href="#" id="credits-link">Credits</a>
+
+            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+
+
         </section>
 
         <!-- Game -->
