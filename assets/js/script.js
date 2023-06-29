@@ -209,6 +209,12 @@ function beginFetchingQuotes() {
 }
 
 
+// generates
+function displaySavedQuotes() {
+
+}
+
+
 // executed one time once page loads
 function init() {
     // beginFetchingQuotes();
@@ -217,7 +223,8 @@ function init() {
         $('.modal').modal();
       });
 
-    $('#playButton').on("click", startGame);
+    $('#play-button').on("click", startGame);
+    $('#saved-quotes-button').on("click", displaySavedQuotes);
 }
 
 

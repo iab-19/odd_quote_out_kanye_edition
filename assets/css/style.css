@@ -32,6 +32,7 @@ button:hover {
     height: 50px;
     font-size: 30px;
 }
+
 #how-to-play-button {
     background-color: white;
     color: black;
@@ -39,8 +40,4 @@ button:hover {
 
 #how-to-play-button:hover {
     color: var(--main_blue);
-}
-
-#saved-quotes-button {
-
 }
