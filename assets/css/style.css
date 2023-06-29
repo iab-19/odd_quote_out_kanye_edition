@@ -28,19 +28,16 @@ button:hover {
     cursor: pointer;
 }
 
-#playButton {
+#play-button {
     height: 50px;
     font-size: 30px;
 }
-#howToPlayButton {
+
+#how-to-play-button {
     background-color: white;
     color: black;
 }
 
-#howToPlayButton:hover {
+#how-to-play-button:hover {
     color: var(--main_blue);
-}
-
-#savedQuotesButton {
-
 }

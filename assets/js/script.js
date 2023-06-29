@@ -19,6 +19,11 @@ class Quote {
 }
 
 
+function hideElement(element) {
+    $(element).css("display", "none");
+}
+
+
 // returns a random integer from 0 to max
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -178,8 +183,7 @@ function startNewQuestion() {
 
     // if more time is needed to load quotes and waiting has not begun
     else if (!questionLoadInterval) {
-        // begin rechecking if qutoes are loaded on interval
-        console.log("Begin waiting!")
+        // begin rechecking if quotes are loaded on interval
         questionLoadInterval = setInterval(startNewQuestion, waitForQuestionLoadTime);
     }
 
@@ -193,6 +197,8 @@ function startNewQuestion() {
 function startGame() {
     currentQuestion = 0;
     startNewQuestion();
+
+    hideElement($('#homepage'));
 }
 
 
@@ -203,10 +209,22 @@ function beginFetchingQuotes() {
 }
 
 
+// generates
+function displaySavedQuotes() {
+
+}
+
+
 // executed one time once page loads
 function init() {
-    beginFetchingQuotes();
-    startGame();
+    // beginFetchingQuotes();
+
+    $(document).ready(function(){
+        $('.modal').modal();
+      });
+
+    $('#play-button').on("click", startGame);
+    $('#saved-quotes-button').on("click", displaySavedQuotes);
 }
 
 
