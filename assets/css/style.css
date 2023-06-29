@@ -7,14 +7,14 @@
 }
 
 body {
-    text-align: center;
+    
 }
 
 #homepage {
-
+    text-align: center;
 }
 
-button {
+#homepage button {
     width: 20%;
     height: 40px;
     background-color: var(--main_blue);
@@ -23,7 +23,7 @@ button {
     border: black solid 1px;
 }
 
-button:hover {
+#homepage button:hover {
     color: black;
     cursor: pointer;
 }
@@ -43,4 +43,22 @@ button:hover {
 
 #savedQuotesButton {
 
+}
+
+.quote-text {
+    font-size: 200%;
+}
+
+.quote-text::before,
+.quote-text::after {
+    content: '"';
+}
+
+.save-quote-btn {
+    width: min-content;
+    height: auto;
+    padding: 0px;
+    float: right;
+    background-color: transparent;
+    border: none;
 }

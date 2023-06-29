@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odd Quote Out</title>
 
+    <!-- Google Icons for Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -30,70 +33,83 @@
         </section>
 
         <!-- Game -->
-        <section>
-div class="container">
-        <!-- Page Content goes here -->
-    <header>
-        <progress> ii </progress>
-        <div class="progress">
-            <div id="testProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <h1>What would Kanye say?</h1>
-    </header>
-    <main>
-      <!-- first option-->
-    <div class="divider"></div>
-    <div class="section">
-       <h5>
-         <button class="quote-btn">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
-        </h5>
-        <div id="Author" class="hide">
-            <p5> Author 1 </p5></div>
-     <h6></h6>
-         <a href="my quotes">
-            <i class="tiny material-icons">bookmark_border</i>
-            </a>
-        </button>
-    </div>
-<!--second option -->
-    <div class="divider"></div>
-    <div class="section">
-        <h5><button class="quote-btn">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
-        </h5></button>
-        <div id="Author" class="hide">
-            <p5> Author 2 </p5></div>
-        <h6></h6>
-        <a href="my quotes">
-                <i class="tiny material-icons">bookmark_border</i>
-        </a>
-    </div>
-<!--third option-->
-    <div class="divider"></div>
-    <div class="section">
-        <h5><button Class="quote-btn"> “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
-        </h5></button>
-        <div id="Author" class="hide">
-            <p5> Author 3 </p5></div>
-        <h6></h6>
-        <a href="my quotes">
-            <i class="tiny material-icons">bookmark_border</i>
-        </a>
-<!--fourth option-->
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-        <h5><button class="quote-btn">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
-        </h5> </button>
-        <div id="Author" class="hide">
-            <p5> Author 4 </p5></div>
-         <h6></h6>
-            <a href="my quotes">
-                <i class="tiny material-icons">bookmark_border</i>
-            </a>
-    </div>
-    <div class="controls">
-        <button id="score-btn" class="score-btn">Current score</button>
-    </div>
+        <section id="game-section">
+            <div class="container">
+
+                <!-- Game header -->
+                <header>
+                    <progress> ii </progress>
+                    <div class="progress">
+                        <div id="testProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h1 class="center-align">What would Kanye say?</h1>
+                </header>
+
+                <!-- Game main content -->
+                <main>
+
+                    <!-- first option-->
+                    <div class="card quote-card">
+                        <div class="card-content">
+                            <p class="quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            <div class="row">
+                                <div class="author-container col s6">
+                                    <span>- </span><span class="author-text">???</span>
+                                </div>
+                                <button class="save-quote-btn"><i class="small material-icons">bookmark_border</i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--second option -->
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h5><button class="quote-btn">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
+                        </h5></button>
+                        <div id="Author" class="hide">
+                            <p5> Author 2 </p5></div>
+                        <h6></h6>
+                        <a href="my quotes">
+                                <i class="tiny material-icons">bookmark_border</i>
+                        </a>
+                    </div>
+
+                    <!--third option-->
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h5><button Class="quote-btn"> “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
+                        </h5></button>
+                        <div id="Author" class="hide">
+                            <p5> Author 3 </p5></div>
+                        <h6></h6>
+                        <a href="my quotes">
+                            <i class="tiny material-icons">bookmark_border</i>
+                        </a>
+                    </div>
+
+                    <!--fourth option-->
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h5><button class="quote-btn">“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
+                        </h5> </button>
+                        <div id="Author" class="hide">
+                            <p5> Author 4 </p5></div>
+                        <h6></h6>
+                            <a href="my quotes">
+                                <i class="tiny material-icons">bookmark_border</i>
+                            </a>
+                    </div>
+
+                <!-- Game footer -->
+                <footer>
+                    <div class="controls">
+                        <button id="score-btn" class="score-btn">Current score</button>
+                    </div>
+                </footer>
+            </div>
+
+            
+            
         </section>
 
         <!-- End page -->

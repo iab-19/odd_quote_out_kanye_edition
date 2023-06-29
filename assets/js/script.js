@@ -207,6 +207,13 @@ function beginFetchingQuotes() {
 function init() {
     beginFetchingQuotes();
     startGame();
+
+    // bookmark icon fills in on hover
+    // $('.save-quote-btn').on('mouseover', (event) => { $(event.target).find('.material-icons').text('bookmark'); });
+    // bookmark icon outline when not hovering
+    // $('.save-quote-btn').on('mouseleave', (event) => { $(event.target).find('.material-icons').text('bookmark_border'); });
+    // clicking bookmark button saves the quote
+    // $('.save-quote-btn').on('click', () => { console.log("Save Quote button clicked!"); } );
 }
 
 
