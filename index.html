@@ -23,13 +23,62 @@
     <main>
         <!-- Home page -->
         <section id="homepage">
-            <h1>Odd Quote Out:</h1>
-            <h1><strong>Kanye </strong>Edition</h1>
-            <h3>What would Kanye say?</h3>
-            <button id="playButton">Play</button><br>
-            <button id="howToPlayButton">How to Play</button><br>
-            <button id="savedQueotesButton">Saved Quotes</button><br>
-            <a href="#" id="creditsLink">Credits</a>
+            <header>
+                <h1>Odd Quote Out:</h1>
+                <h1><strong>Kanye </strong>Edition</h1>
+                <h3>What would Kanye say?</h3>
+            </header>
+
+            <div class="menu">
+                <button id="play-button">Play</button><br>
+                <button id="how-to-play-button" data-target="how-to-play-modal" class="btn modal-trigger">How to Play</button><br>
+                <button id="saved-quotes-button" class="modal-trigger" data-target="saved-quotes">Saved Quotes</button><br>
+                <a href="#credits-modal" class="modal-trigger">Credits</a>
+            </div>
+
+
+             <!-- How To Play Modal -->
+             <div id="how-to-play-modal" class="modal">
+                <div class="modal-content">
+                <h4>How to play</h4>
+                <!-- Instructions on how to play -->
+                <p>4 quotes will be displayed on the screen, 3 will be from random famous people and 1 will be from Kanye West <br>
+                You will get 1 point if you correctly guess which one is Kanye's quote. <br>
+                You can also save a quote you like by pressing the bookmark button located on each quote.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+            <!-- Saved Quotes Modal -->
+            <div id="saved-quotes" class="modal">
+                <div class="modal-content">
+                    <h4>Saved Quotes</h4>
+                    <div class="saved-quotes-container"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+            <!-- Credits Modal -->
+            <div id="credits-modal" class="modal">
+                <div class="modal-content">
+                    <h3>Credits</h3>
+                    <!-- Names of contributors -->
+                    <h4>Hafsah Nasreen</h4>
+                    <h4>Jacob Medina</h4>
+                    <h4>Ibrahima Barry</h4>
+                    <h4>Saron Kal</h4>
+                    <a href="https://github.com/iab-19/odd_quote_out_kanye_edition" target="_blank">GitHub Repository</a>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    </div>
+            </div>
+
+
         </section>
 
         <!-- Game -->
