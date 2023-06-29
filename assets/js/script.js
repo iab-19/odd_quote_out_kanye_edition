@@ -1,4 +1,4 @@
-const numberOfQuestions = 3;  // number of questions per quiz
+const numberOfQuestions = 1;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
@@ -20,7 +20,12 @@ class Quote {
 
 
 function hideElement(element) {
-    $(element).css("display", "none");
+    $(element).addClass('hide');
+}
+
+
+function showElement(element) {
+    $(element).removeClass('hide');
 }
 
 
@@ -131,7 +136,7 @@ function getSavedQuotes() {
 
 
 // saves a quote to local storage
-function saveQuoteToLocalStorage(quoteObject) {
+function saveQuoteToStorage(quoteObject) {
     const savedQuotes = getSavedQuotes();
 
     // cancel action if quote is already in saved quotes
@@ -142,12 +147,34 @@ function saveQuoteToLocalStorage(quoteObject) {
 }
 
 
+// removes a quote to local storage
+function removeQuoteFromStorage(quoteObject) {
+    const savedQuotes = getSavedQuotes();
+
+    // cancel action if quote is NOT in saved quotes
+    const foundQuoteIndex = savedQuotes.findIndex(quote => quote.text === quoteObject.text);
+    if (foundQuoteIndex === -1) { return; }
+
+    savedQuotes.splice(foundQuoteIndex, 1);
+    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));  
+}
+
+
 // handles when a "save quote" button is clicked
 function handleSaveQuoteButtonClick(event) {
     const button = $(this);
     const quoteObject = JSON.parse(button.data('quote'));
 
-    saveQuoteToLocalStorage(quoteObject);
+    if (button.attr('data-toggled') === 'true') {
+        button.attr('data-toggled', 'false');
+        removeQuoteFromStorage(quoteObject);
+    }
+    else {
+        button.attr('data-toggled', 'true');
+        saveQuoteToStorage(quoteObject);
+    }
+    
+
 }
 
 
@@ -189,15 +216,26 @@ function generateQuestionSet(questionSet) {
     console.log("Question Set:", questionSet);
 
     for (quote of questionSet) {
-        $('body').append(`<p>${quote.text}</p>`);
-        $('body').append(`<p>- ${quote.author}</p>`);
+        const quoteCard = $(`
+        <div class="card quote-card">
+            <div class="card-content">
+                <p class="quote-text">${quote.text}</p>
+                <div class="row">
+                    <div class="author-container col s6">
+                        <p class="author-text">???</p>
+                    </div>
+                </div>
+            </div>
+        </div>`);
 
-        // generate heart button
-        const saveButton = $('<button>');
-        saveButton.text('Save');
-        saveButton.data('quote', JSON.stringify(quote));
-        saveButton.on('click', handleSaveQuoteButtonClick);
-        $('body').append(saveButton);
+        const saveQuoteButton = $(`
+        <button class="save-quote-btn" data-toggled="false">
+            <i class="small material-icons"></i>
+        </button>`);
+        saveQuoteButton.data('quote', JSON.stringify(quote));
+        saveQuoteButton.on('click', handleSaveQuoteButtonClick);
+        quoteCard.find('.row').append(saveQuoteButton);
+        $('#game-section main').append(quoteCard);
     }
 }
 
@@ -215,6 +253,7 @@ function startNewQuestion() {
         // generate a new question set
         const questionSet = generateQuestionSetArray();
         generateQuestionSet(questionSet);
+        showElement($('#game-section'));
         currentQuestion++;
     }
 
@@ -261,7 +300,9 @@ function displaySavedQuotes() {
 
 // executed one time once page loads
 function init() {
-    // beginFetchingQuotes();
+    beginFetchingQuotes();
+
+    hideElement($('#game-section'));
 
     $(document).ready(function(){
         $('.modal').modal();
@@ -275,7 +316,7 @@ function init() {
     // bookmark icon outline when not hovering
     // $('.save-quote-btn').on('mouseleave', (event) => { $(event.target).find('.material-icons').text('bookmark_border'); });
     // clicking bookmark button saves the quote
-    // $('.save-quote-btn').on('click', () => { console.log("Save Quote button clicked!"); } );
+    $('.save-quote-btn .material-icons').on('click', () => { console.log("Save Quote button clicked!"); } );
 }
 
 

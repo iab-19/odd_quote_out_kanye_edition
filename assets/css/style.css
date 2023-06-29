@@ -47,12 +47,16 @@ body {
 }
 
 .quote-text {
-    font-size: 200%;
+    font-size: 120%;
 }
 
 .quote-text::before,
 .quote-text::after {
     content: '"';
+}
+
+.author-text::before {
+    content: "- "
 }
 
 .save-quote-btn {
@@ -62,4 +66,16 @@ body {
     float: right;
     background-color: transparent;
     border: none;
+}
+
+/* Outline bookmark icon when not hovered over */
+.save-quote-btn[data-toggled="false"] .material-icons::before {
+    content: "bookmark_border";
+}
+
+/* Fill in bookmark icon when hovered over */
+.save-quote-btn .material-icons:hover::before,
+.save-quote-btn[data-toggled="true"] .material-icons::before {
+    content: "bookmark";
+    cursor: pointer;
 }
