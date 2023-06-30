@@ -49,7 +49,7 @@ function filterQuotes(quotes, dontIncludeArray) {
     const filteredQuotes = [];
 
     for (const quote of quotes) {
-        if (quote.quoteText.length <= quoteCharacterCap && quoteNotIncluded(quote.quoteText, dontIncludeArray)) { 
+        if (quote.quoteText.length <= quoteCharacterCap && quoteNotIncluded(quote.quoteText, dontIncludeArray)) {
             const quoteObject = new Quote(quote.quoteText, quote.quoteAuthor);
             filteredQuotes.push(quoteObject);
         }
@@ -80,7 +80,7 @@ function fetchOtherQuotes() {
             otherQuotes = otherQuotes.concat(filterQuotes(data.data, otherQuotes));
 
             // fetch more quotes if there aren't enough to fill all questions
-            if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) { 
+            if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) {
                 fetchOtherQuotes();
             }
 
@@ -107,8 +107,8 @@ function fetchKanyeQuotes() {
             // make quote object and add it to Kanye quotes array
             const quoteObject = new Quote(quote, 'Kanye West');
             kanyeQuotes = kanyeQuotes.concat(filterQuote(quoteObject, kanyeQuotes));
-            
-            
+
+
             // fetch more quotes if there aren't enough to fill all questions
             if (kanyeQuotes.length < numberOfQuestions - currentQuestion) {
                 fetchKanyeQuotes();
@@ -139,7 +139,7 @@ function saveQuoteToStorage(quoteObject) {
     if (savedQuotes.find(quote => quote.text === quoteObject.text)) { return; }
 
     savedQuotes.push(quoteObject);
-    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));  
+    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));
 }
 
 
@@ -152,7 +152,7 @@ function removeQuoteFromStorage(quoteObject) {
     if (foundQuoteIndex === -1) { return; }
 
     savedQuotes.splice(foundQuoteIndex, 1);
-    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));  
+    localStorage.setItem('savedQuotes', JSON.stringify(savedQuotes));
 }
 
 
@@ -173,14 +173,15 @@ function handleSaveQuoteButtonClick(event) {
     }
 }
 
-
+// Changed from .css to .addClass to make sure only the outline
+// is highlighted
 function displayCorrectAnswer(quoteCardClicked) {
-    quoteCardClicked.css('background-color', 'var(--correct-green)');
+    quoteCardClicked.addClass('correct-answer');
 }
 
 
 function displayIncorrectAnswer(quoteCardClicked) {
-    quoteCardClicked.css('background-color', 'var(--incorrect-red)');
+    quoteCardClicked.addClass('incorrect-answer');
 }
 
 
@@ -245,7 +246,7 @@ function generateQuestionSetArray() {
 
         questionSet.push(otherQuote);
     }
-    
+
     // scramble question set array
     const scrambledQuestionSet = [];
     while (questionSet.length > 0) {
@@ -299,7 +300,7 @@ function generateQuestionSet(questionSet) {
 
 function startNewQuestion() {
     // check if last question is finished
-    if (currentQuestion >= numberOfQuestions) { 
+    if (currentQuestion >= numberOfQuestions) {
         endGame();
         return;
     }
@@ -310,7 +311,7 @@ function startNewQuestion() {
     const enoughQuotesLoaded = (kanyeQuotes.length >= 1) && (otherQuotes.length >= numberOfOtherQuotes);
     if (enoughQuotesLoaded) {
         // stop waiting for loading
-        if (questionLoadInterval) { 
+        if (questionLoadInterval) {
             clearInterval(questionLoadInterval);
             questionLoadInterval = null;
         }
@@ -348,7 +349,7 @@ function startGame() {
     startNewQuestion();
 
     hideElement($('#homepage'));
-    
+
 }
 
 
