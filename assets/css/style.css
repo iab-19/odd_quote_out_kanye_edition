@@ -21,6 +21,7 @@ body {
     background-image: url("../images/v748-toon-111.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
     /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
@@ -54,16 +55,6 @@ body {
     font-size: 30px;
 }
 
-#how-to-play-button {
-    background-color: white;
-    color: black;
-    text-transform: none;
-}
-
-#how-to-play-button:hover {
-
-}
-
 .saved-quotes-container {
     text-align: left;
 }
@@ -95,7 +86,7 @@ body {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url(../images/kanye-west-head.png);
+    background-image: url("../images/kanye-west-head-neutral.png");
     background-size: contain;
     background-repeat: no-repeat;
     transform: rotate(-15deg);
@@ -119,7 +110,7 @@ body {
     content: '"';
 }
 
-.quote-text .row {
+.quote-card .row {
     margin-bottom: 0px;
 }
 
@@ -151,6 +142,7 @@ body {
 
 }
 
+.save-quote-btn:active,
 .save-quote-btn:focus {
     background-color: transparent;
 }
@@ -176,4 +168,8 @@ body {
 }
 .incorrect-answer {
     border: 3px solid var(--incorrect-red);
+}
+
+.next-btn {
+    visibility: hidden;
 }

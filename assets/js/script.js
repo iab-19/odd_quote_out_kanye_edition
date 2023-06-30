@@ -173,15 +173,22 @@ function handleSaveQuoteButtonClick(event) {
     }
 }
 
+
+function kanyeEmotion(emotion) {
+    $('.kanye-head').css('background-image', `url("./assets/images/kanye-west-head-${emotion}.png")`);
+}
+
 // Changed from .css to .addClass to make sure only the outline
 // is highlighted
 function displayCorrectAnswer(quoteCardClicked) {
     quoteCardClicked.addClass('correct-answer');
+    kanyeEmotion('happy');
 }
 
 
 function displayIncorrectAnswer(quoteCardClicked) {
     quoteCardClicked.addClass('incorrect-answer');
+    kanyeEmotion('upset');
 }
 
 
@@ -189,21 +196,24 @@ function displayIncorrectAnswer(quoteCardClicked) {
 function handleQuoteCardClick(event) {
     // cancel action if question was already answered
     if (answeredQuestion) { return; }
-
     answeredQuestion = true;
+
+    // remove hover effect from cards
     $('.quote-card').map(function() {
         $(this).removeClass('hoverable');
-    })
-
-    const quoteCard = $(this);
-    const quote = JSON.parse(quoteCard.data('quote'));
+    });
 
     // show the author of each quote
+    const quoteCard = $(this);
+    const quote = JSON.parse(quoteCard.data('quote'));
     $('.author-text').map(function() {
         const specificQuoteCard = $(this).parents('.quote-card');
         const author = JSON.parse(specificQuoteCard.data('quote')).author;
         $(this).text(author);
     });
+
+    // show next button
+    $('.next-btn').css('visibility', 'inherit');
 
     if (quote.author === 'Kanye West') { displayCorrectAnswer(quoteCard); }
     else { displayIncorrectAnswer(quoteCard); }
@@ -286,7 +296,7 @@ function generateQuestionSet(questionSet) {
 
         // create save quote button
         const saveQuoteButton = $(`
-        <button class="save-quote-btn" data-toggled="false">
+        <button class="save-quote-btn tooltipped" data-toggled="false" data-position="bottom" data-tooltip="I am a tooltip">
             <i class="small material-icons"></i>
         </button>`);
         saveQuoteButton.data('quote', JSON.stringify(quote));
@@ -299,6 +309,9 @@ function generateQuestionSet(questionSet) {
 
 
 function startNewQuestion() {
+    $('.correct-answer-modal').modal('close');
+    kanyeEmotion('neutral');
+    
     // check if last question is finished
     if (currentQuestion >= numberOfQuestions) {
         endGame();
@@ -324,6 +337,7 @@ function startNewQuestion() {
         generateQuestionSet(questionSet);
 
         hideElement($('#loading-section'));
+        $('.next-btn').css('visibility', 'hidden');
         showElement($('#game-section'));
 
         currentQuestion++;
@@ -349,7 +363,6 @@ function startGame() {
     startNewQuestion();
 
     hideElement($('#homepage'));
-
 }
 
 
@@ -379,13 +392,20 @@ function init() {
 
     $(document).ready(function(){
         $('.modal').modal();
-      });
+        $('.tooltipped').tooltip();
+    });
 
     $('#play-button').on("click", startGame);
     $('#saved-quotes-button').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
 
-    updateProgressBar(30);
+    updateProgressBar(0);
+
+    // const elem = document.querySelector('.correct-answer-modal');
+    // var instance = M.Modal.getInstance(elem);
+    // $('.correct-answer-modal').modal('open');
+    // instance.open();
+    // $('.correct-answer-modal').modal('open');
 }
 
 
