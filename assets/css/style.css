@@ -3,7 +3,7 @@
     --main_blue: #089cd2;
     --correct-green: #b2eeb1;
     --incorrect-red: #f02b2b;
-    --main_orange: #fd8700;
+    --main-orange: #fd8700;
     --light-orange: #ffb732;
 
 }
@@ -21,6 +21,7 @@ body {
     background-image: url("../images/v748-toon-111.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
     /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
@@ -28,9 +29,20 @@ body {
     padding: 20px;
 }
 
+
 blockquote {
     border-color: var(--main_orange);
     margin: 0;
+
+.progress {
+    height: 10px;
+    border-radius: 2px;
+    background-color: var(--light-orange);
+}
+
+.progress .determinate {
+    border-radius: 2px;
+    background-color: var(--main-orange);
 }
 
 
@@ -43,7 +55,7 @@ blockquote {
 #homepage .menu button {
     width: 20%;
     height: 40px;
-    background-color: var(--main_orange);
+    background-color: var(--main-orange);
     color: white;
     margin: 10px;
     border: black solid 1px;
@@ -59,17 +71,25 @@ blockquote {
     font-size: 30px;
 }
 
-#how-to-play-button {
-    background-color: white;
-    color: black;
-    text-transform: none;
+.saved-quotes-container {
+    text-align: left;
 }
+
 
 
 /* SAVED QUOTES MODAL */
 
-.saved-quotes-container {
-    text-align: left;
+/* LOADING SECTION */
+
+#loading-section {
+    width: 100%;
+    height: 100vh;
+}
+
+#loading-section .valign-wrapper {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .saved-quotes-container .saved-quote {
@@ -109,36 +129,62 @@ blockquote {
     font-size: 200%;
 }
 
-.progress {
+#game-section .progress {
     width: 80%;
     max-width: 500px;
     margin: 0 auto;
     overflow: visible;
-    background-color: var(--light-orange);
-}
-
-#progress-bar {
-    background-color: var(--main_orange);
+    
 }
 
 .kanye-head {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url(../images/kanye-west-head.png);
+    background-image: url("../images/kanye-west-head-neutral.png");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     transform: rotate(-15deg);
     bottom: -20px;
-    /* top: 25%; */
+    animation-duration: 1.5s;
 }
 
-.kanye-head::before {
+@keyframes happy {
+    from { transform: rotate(-15deg) scale(1); }
+
+    50% { transform: rotate(345deg) scale(2); }
+
+    to { transform: rotate(1065deg) scale(1); }
+}
+
+@keyframes upset {
+    from { transform: rotate(-15deg) scale(1); }
+
+    10% { transform: rotate(15deg) scale(1.125); }
+
+    20% { transform: rotate(-15deg) scale(1.25); }
+
+    30% { transform: rotate(15deg) scale(1.375); }
+
+    40% { transform: rotate(-15deg) scale(1.5); }
+
+    50% { transform: rotate(15deg) scale(1.625); }
+
+    60% { transform: rotate(-15deg) scale(1.75); }
+
+    70% { transform: rotate(15deg) scale(1.875); }
+
+    80% { transform: rotate(-15deg) scale(2); }
+
+    to { transform: rotate(-15deg) scale(1); }
+}
+
+/* .kanye-head::before {
     content: "";
     width: 50px;
     height: 50px;
-
-}
+} */
 
 .quote-text {
     font-size: 120%;
@@ -149,7 +195,7 @@ blockquote {
     content: '"';
 }
 
-.quote-text .row {
+.quote-card .row {
     margin-bottom: 0px;
 }
 
@@ -158,11 +204,11 @@ blockquote {
 }
 
 .btn {
-    background-color: var(--main_orange);
+    background-color: var(--main-orange);
 }
 
 .btn:hover{
-    background-color: var(--main_orange);
+    background-color: var(--main-orange);
     color: black;
 }
 
@@ -181,6 +227,7 @@ blockquote {
 
 }
 
+.save-quote-btn:active,
 .save-quote-btn:focus {
     background-color: transparent;
 }
@@ -188,7 +235,7 @@ blockquote {
 /* Outline bookmark icon when not hovered over (and not toggled) */
 .save-quote-btn[data-toggled="false"] .material-icons::before {
     content: "bookmark_border";
-    color: var(--main_orange);
+    color: var(--main-orange);
 }
 
 /* Fill in bookmark icon when hovered over or toggled */
@@ -196,7 +243,7 @@ blockquote {
 .save-quote-btn[data-toggled="true"] .material-icons::before {
     content: "bookmark";
     cursor: pointer;
-    color: var(--main_orange);
+    color: var(--main-orange);
 }
 
 /* Change color of border if selected quote is corrrect
@@ -206,4 +253,8 @@ blockquote {
 }
 .incorrect-answer {
     border: 3px solid var(--incorrect-red);
+}
+
+.next-btn {
+    visibility: hidden;
 }

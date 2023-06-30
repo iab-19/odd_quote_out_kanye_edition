@@ -4,6 +4,7 @@ const quoteCharacterCap = 80;  // maximum number of characters any quote can hav
 
 var currentQuestion = 0;  // keeps track of which question number the player is on
 let answeredQuestion = false;  // keeps track of if user answered question already
+let score = 0;
 
 var questionLoadInterval;
 const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before checking if quotes are loaded
@@ -80,13 +81,9 @@ function fetchOtherQuotes() {
             otherQuotes = otherQuotes.concat(filterQuotes(data.data, otherQuotes));
 
             // fetch more quotes if there aren't enough to fill all questions
-            if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) {
-                fetchOtherQuotes();
-            }
+            if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) { fetchOtherQuotes(); }
 
-            else {
-                console.log("Other Quotes:", otherQuotes);
-            }
+            // else { console.log("Other Quotes:", otherQuotes); }
         });
 }
 
@@ -110,13 +107,9 @@ function fetchKanyeQuotes() {
 
 
             // fetch more quotes if there aren't enough to fill all questions
-            if (kanyeQuotes.length < numberOfQuestions - currentQuestion) {
-                fetchKanyeQuotes();
-            }
+            if (kanyeQuotes.length < numberOfQuestions - currentQuestion) { fetchKanyeQuotes(); }
 
-            else {
-                console.log("Kanye Quotes:", kanyeQuotes);
-            }
+            // else { console.log("Kanye Quotes:", kanyeQuotes); }
         });
 }
 
@@ -173,15 +166,25 @@ function handleSaveQuoteButtonClick(event) {
     }
 }
 
+
+function kanyeEmotion(emotion) {
+    $('.kanye-head').css('background-image', `url("./assets/images/kanye-west-head-${emotion}.png")`);
+    if (emotion === 'neutral') { $('.kanye-head').css('animation-name', 'none'); }
+    else { $('.kanye-head').css('animation-name', emotion); }
+}
+
 // Changed from .css to .addClass to make sure only the outline
 // is highlighted
 function displayCorrectAnswer(quoteCardClicked) {
+    score++;
     quoteCardClicked.addClass('correct-answer');
+    kanyeEmotion('happy');
 }
 
 
 function displayIncorrectAnswer(quoteCardClicked) {
     quoteCardClicked.addClass('incorrect-answer');
+    kanyeEmotion('upset');
 }
 
 
@@ -189,21 +192,24 @@ function displayIncorrectAnswer(quoteCardClicked) {
 function handleQuoteCardClick(event) {
     // cancel action if question was already answered
     if (answeredQuestion) { return; }
-
     answeredQuestion = true;
+
+    // remove hover effect from cards
     $('.quote-card').map(function() {
         $(this).removeClass('hoverable');
-    })
-
-    const quoteCard = $(this);
-    const quote = JSON.parse(quoteCard.data('quote'));
+    });
 
     // show the author of each quote
+    const quoteCard = $(this);
+    const quote = JSON.parse(quoteCard.data('quote'));
     $('.author-text').map(function() {
         const specificQuoteCard = $(this).parents('.quote-card');
         const author = JSON.parse(specificQuoteCard.data('quote')).author;
         $(this).text(author);
     });
+
+    // show next button
+    $('.next-btn').css('visibility', 'inherit');
 
     if (quote.author === 'Kanye West') { displayCorrectAnswer(quoteCard); }
     else { displayIncorrectAnswer(quoteCard); }
@@ -215,6 +221,7 @@ function endGame() {
     hideElement($('#loading-section'));
 
     console.log('END OF GAME!');
+    console.log('Score:', score);
 }
 
 
@@ -272,7 +279,7 @@ function generateQuestionSet(questionSet) {
             <div class="card-content">
                 <p class="quote-text">${quote.text}</p>
                 <div class="row">
-                    <div class="author-container col s6">
+                    <div class="author-container col s9">
                         <p class="author-text" data-author="">???</p>
                     </div>
                 </div>
@@ -286,7 +293,7 @@ function generateQuestionSet(questionSet) {
 
         // create save quote button
         const saveQuoteButton = $(`
-        <button class="save-quote-btn" data-toggled="false">
+        <button class="save-quote-btn tooltipped" data-toggled="false" data-position="bottom" data-tooltip="I am a tooltip">
             <i class="small material-icons"></i>
         </button>`);
         saveQuoteButton.data('quote', JSON.stringify(quote));
@@ -298,7 +305,24 @@ function generateQuestionSet(questionSet) {
 }
 
 
+// updates loading bar display based on amount of quotes loaded
+function updateLoadingBar() {
+    // calculate percent
+    const maxValue = numberOfOtherQuotes + 1;
+    const currentValue = Math.min(kanyeQuotes.length, 1) + Math.min(otherQuotes.length, numberOfOtherQuotes);
+    const percent = Math.round(currentValue / maxValue * 100);
+
+    // update display
+    const loadingBar = $('#loading-section .determinate');
+    loadingBar.attr('aria-valuenow', String(percent));
+    loadingBar.css('width', `${percent}%`);
+}
+
+
+// attempts to generate a new question set
 function startNewQuestion() {
+    kanyeEmotion('neutral');
+    
     // check if last question is finished
     if (currentQuestion >= numberOfQuestions) {
         endGame();
@@ -309,6 +333,7 @@ function startNewQuestion() {
 
     // if enough quotes are loaded for 1 new question
     const enoughQuotesLoaded = (kanyeQuotes.length >= 1) && (otherQuotes.length >= numberOfOtherQuotes);
+    
     if (enoughQuotesLoaded) {
         // stop waiting for loading
         if (questionLoadInterval) {
@@ -324,6 +349,7 @@ function startNewQuestion() {
         generateQuestionSet(questionSet);
 
         hideElement($('#loading-section'));
+        $('.next-btn').css('visibility', 'hidden');
         showElement($('#game-section'));
 
         currentQuestion++;
@@ -336,20 +362,19 @@ function startNewQuestion() {
         questionLoadInterval = setInterval(startNewQuestion, waitForQuestionLoadTime);
     }
 
-    else {
-        console.log("Wait for load...");
-    }
+    else { updateLoadingBar(); }
 }
 
 
 // begins a new game
 function startGame() {
     currentQuestion = 0;
+    score = 0;
+
     showElement($('#loading-section'));
     startNewQuestion();
 
     hideElement($('#homepage'));
-
 }
 
 
@@ -397,14 +422,14 @@ function init() {
     beginFetchingQuotes();
 
     $(document).ready(function(){
-        $('.modal').modal();
-      });
+        $('.tooltipped').tooltip();
+    });
 
     $('#play-button').on("click", startGame);
     $('#saved-quotes-button').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
 
-    updateProgressBar(30);
+    updateProgressBar(0);
 }
 
 
