@@ -80,13 +80,9 @@ function fetchOtherQuotes() {
             otherQuotes = otherQuotes.concat(filterQuotes(data.data, otherQuotes));
 
             // fetch more quotes if there aren't enough to fill all questions
-            if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) {
-                fetchOtherQuotes();
-            }
+            if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) { fetchOtherQuotes(); }
 
-            else {
-                console.log("Other Quotes:", otherQuotes);
-            }
+            // else { console.log("Other Quotes:", otherQuotes); }
         });
 }
 
@@ -110,13 +106,9 @@ function fetchKanyeQuotes() {
 
 
             // fetch more quotes if there aren't enough to fill all questions
-            if (kanyeQuotes.length < numberOfQuestions - currentQuestion) {
-                fetchKanyeQuotes();
-            }
+            if (kanyeQuotes.length < numberOfQuestions - currentQuestion) { fetchKanyeQuotes(); }
 
-            else {
-                console.log("Kanye Quotes:", kanyeQuotes);
-            }
+            // else { console.log("Kanye Quotes:", kanyeQuotes); }
         });
 }
 
@@ -310,8 +302,22 @@ function generateQuestionSet(questionSet) {
 }
 
 
+// updates loading bar display based on amount of quotes loaded
+function updateLoadingBar() {
+    // calculate percent
+    const maxValue = numberOfOtherQuotes + 1;
+    const currentValue = Math.min(kanyeQuotes.length, 1) + Math.min(otherQuotes.length, numberOfOtherQuotes);
+    const percent = Math.round(currentValue / maxValue * 100);
+
+    // update display
+    const loadingBar = $('#loading-section .determinate');
+    loadingBar.attr('aria-valuenow', String(percent));
+    loadingBar.css('width', `${percent}%`);
+}
+
+
+// attempts to generate a new question set
 function startNewQuestion() {
-    $('.correct-answer-modal').modal('close');
     kanyeEmotion('neutral');
     
     // check if last question is finished
@@ -324,6 +330,7 @@ function startNewQuestion() {
 
     // if enough quotes are loaded for 1 new question
     const enoughQuotesLoaded = (kanyeQuotes.length >= 1) && (otherQuotes.length >= numberOfOtherQuotes);
+    
     if (enoughQuotesLoaded) {
         // stop waiting for loading
         if (questionLoadInterval) {
@@ -352,9 +359,7 @@ function startNewQuestion() {
         questionLoadInterval = setInterval(startNewQuestion, waitForQuestionLoadTime);
     }
 
-    else {
-        console.log("Wait for load...");
-    }
+    else { updateLoadingBar(); }
 }
 
 
@@ -393,7 +398,6 @@ function init() {
     beginFetchingQuotes();
 
     $(document).ready(function(){
-        $('.modal').modal();
         $('.tooltipped').tooltip();
     });
 
@@ -402,12 +406,6 @@ function init() {
     $('.next-btn').on('click', startNewQuestion);
 
     updateProgressBar(0);
-
-    // const elem = document.querySelector('.correct-answer-modal');
-    // var instance = M.Modal.getInstance(elem);
-    // $('.correct-answer-modal').modal('open');
-    // instance.open();
-    // $('.correct-answer-modal').modal('open');
 }
 
 
