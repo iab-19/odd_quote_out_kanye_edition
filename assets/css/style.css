@@ -28,6 +28,11 @@ body {
     padding: 20px;
 }
 
+blockquote {
+    border-color: var(--main_orange);
+    margin: 0;
+}
+
 
 /* HOME PAGE */
 
@@ -35,7 +40,7 @@ body {
     text-align: center;
 }
 
-#homepage button {
+#homepage .menu button {
     width: 20%;
     height: 40px;
     background-color: var(--main_orange);
@@ -44,7 +49,7 @@ body {
     border: black solid 1px;
 }
 
-#homepage button:hover {
+#homepage .menu button:hover {
     color: black;
     cursor: pointer;
 }
@@ -60,12 +65,37 @@ body {
     text-transform: none;
 }
 
-#how-to-play-button:hover {
 
-}
+/* SAVED QUOTES MODAL */
 
 .saved-quotes-container {
     text-align: left;
+}
+
+.saved-quotes-container .saved-quote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.delete-quote-btn {
+    width: min-content;
+    height: min-content;
+    float: right;
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+.delete-quote-btn:hover {
+    cursor: pointer;
+}
+
+.delete-quote-btn:focus,
+.delete-quote-btn:hover {
+    background-color: transparent;
+    color: var(--main_orange);
 }
 
 

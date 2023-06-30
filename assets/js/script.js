@@ -365,9 +365,28 @@ function displaySavedQuotes() {
     const containerElement = $('#saved-quotes .saved-quotes-container');
     containerElement.empty();
 
-    for (quote of getSavedQuotes()) {
-        const quoteElement = $('<blockquote class=".left-align">');
-        quoteElement.html(`${quote.text}<br/> - ${quote.author}`);
+    if (getSavedQuotes().length === 0) {
+        containerElement.append(`<p class="center-align">You haven't saved any quotes.</p>`);
+        return;
+    }
+
+    for (let quote of getSavedQuotes()) {
+        const quoteElement = $('<div class="saved-quote">');
+        quoteElement.append(`
+            <blockquote class="left-align">
+                ${quote.text}<br/> - ${quote.author}
+            </blockquote>`);
+
+        const deleteButton = $(`
+            <button class="delete-quote-btn">
+                <i class="material-icons">clear</i>
+            </button>`);
+        deleteButton.on('click', () => {
+            removeQuoteFromStorage(quote);
+            displaySavedQuotes();
+        });
+
+        quoteElement.append(deleteButton);
         containerElement.append(quoteElement);
     }
 }
