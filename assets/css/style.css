@@ -55,7 +55,7 @@ h3, h4, h5, h6, .subtitle {
 .color-background {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: var(--main_orange);
+    background-color: var(--main-orange);
 }
 
 .card .card-content {
@@ -72,10 +72,10 @@ h3, h4, h5, h6, .subtitle {
     margin-right: 5px;
 }
 
-
 blockquote {
-    border-color: var(--main_orange);
+    border-color: var(--main-orange);
     margin: 0;
+}
 
 .progress {
     height: 10px;
@@ -110,11 +110,11 @@ blockquote {
     align-items: center;
 }
 
-#homepage button {
+#homepage .menu button {
     width: 15%;
     min-width: 10rem;
     /* height: 40px; */
-    background-color: var(--main_orange);
+    background-color: var(--main-orange);
     color: white;
     margin: 10px;
     border: black solid 1px;
@@ -129,23 +129,23 @@ blockquote {
 }
 
 #homepage .menu .btn-outline {
-    border: 3px solid var(--main_orange);
-    color: var(--main_orange);
+    border: 3px solid var(--main-orange);
+    color: var(--main-orange);
     background-color: transparent;
 }
 
-#homepage button:hover,
-#homepage button:focus {
+#homepage .menu button:hover,
+#homepage .menu button:focus {
     /* color: black; */
     background-color: var(--light-orange);
     cursor: pointer;
 }
 
-#homepage .btn-outline:hover,
-#homepage .btn-outline:focus {
-    border: 3px solid var(--main_orange);
+#homepage .menu .btn-outline:hover,
+#homepage .menu .btn-outline:focus {
+    border: 3px solid var(--main-orange);
     color: white;
-    background-color: var(--main_orange);
+    background-color: var(--main-orange);
 }
 
 #play-button {
@@ -154,13 +154,13 @@ blockquote {
     margin-bottom: 40px !important;
 }
 
+
+/* SAVED QUOTES MODAL */
+
 .saved-quotes-container {
     text-align: left;
 }
 
-
-
-/* SAVED QUOTES MODAL */
 
 /* LOADING SECTION */
 
@@ -190,6 +190,7 @@ blockquote {
 #how-to-play-modal .instructions * {
     display: inline-block;
     margin-bottom: 0;
+}
 
 #loading-section .valign-wrapper {
     height: 100%;
@@ -220,7 +221,7 @@ blockquote {
 .delete-quote-btn:focus,
 .delete-quote-btn:hover {
     background-color: transparent;
-    color: var(--main_orange);
+    color: var(--main-orange);
 }
 
 
