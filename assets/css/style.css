@@ -1,17 +1,27 @@
 /* GENERAL */
-:root { 
+:root {
     --main_blue: #089cd2;
     --correct-green: #b2eeb1;
-    --incorrect-red: #ff7d7d;
+    --incorrect-red: #f02b2b;
+    --main_orange: #fd8700;
+    --light-orange: #ffb732;
 
 }
 
 * {
-
+    /* Other fonts from google fonts but did not use */
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    /* font-family: 'Fasthand', cursive; */
+    /* font-family: Helvetica; */
+    /* font-family: 'Abel', sans-serif; */
+    font-family: 'Quicksand', sans-serif;
 }
 
 body {
-    
+    background-image: url("../images/v748-toon-111.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
 .card .card-content {
@@ -28,7 +38,7 @@ body {
 #homepage button {
     width: 20%;
     height: 40px;
-    background-color: var(--main_blue);
+    background-color: var(--main_orange);
     color: white;
     margin: 10px;
     border: black solid 1px;
@@ -47,10 +57,11 @@ body {
 #how-to-play-button {
     background-color: white;
     color: black;
+    text-transform: none;
 }
 
 #how-to-play-button:hover {
-    color: var(--main_blue);
+
 }
 
 .saved-quotes-container {
@@ -61,7 +72,7 @@ body {
 /* GAME */
 
 #game-section header {
-    margin-top: 30px;    
+    margin-top: 30px;
 }
 
 #game-section header h1 {
@@ -73,6 +84,11 @@ body {
     max-width: 500px;
     margin: 0 auto;
     overflow: visible;
+    background-color: var(--light-orange);
+}
+
+#progress-bar {
+    background-color: var(--main_orange);
 }
 
 .kanye-head {
@@ -91,7 +107,7 @@ body {
     content: "";
     width: 50px;
     height: 50px;
-    
+
 }
 
 .quote-text {
@@ -111,6 +127,20 @@ body {
     content: "- "
 }
 
+.btn {
+    background-color: var(--main_orange);
+}
+
+.btn:hover{
+    background-color: var(--main_orange);
+    color: black;
+}
+
+.btn:focus {
+    background-color: #c96b00;
+    color: black;
+}
+
 .save-quote-btn {
     width: min-content;
     height: auto;
@@ -118,11 +148,17 @@ body {
     float: right;
     background-color: transparent;
     border: none;
+
+}
+
+.save-quote-btn:focus {
+    background-color: transparent;
 }
 
 /* Outline bookmark icon when not hovered over (and not toggled) */
 .save-quote-btn[data-toggled="false"] .material-icons::before {
     content: "bookmark_border";
+    color: var(--main_orange);
 }
 
 /* Fill in bookmark icon when hovered over or toggled */
@@ -130,4 +166,14 @@ body {
 .save-quote-btn[data-toggled="true"] .material-icons::before {
     content: "bookmark";
     cursor: pointer;
+    color: var(--main_orange);
+}
+
+/* Change color of border if selected quote is corrrect
+    or incorrect */
+.correct-answer {
+    border: 3px solid var(--correct-green);
+}
+.incorrect-answer {
+    border: 3px solid var(--incorrect-red);
 }
