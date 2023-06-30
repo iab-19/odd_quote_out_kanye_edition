@@ -29,6 +29,11 @@ body {
     padding: 20px;
 }
 
+
+blockquote {
+    border-color: var(--main_orange);
+    margin: 0;
+
 .progress {
     height: 10px;
     border-radius: 2px;
@@ -47,7 +52,7 @@ body {
     text-align: center;
 }
 
-#homepage button {
+#homepage .menu button {
     width: 20%;
     height: 40px;
     background-color: var(--main-orange);
@@ -56,7 +61,7 @@ body {
     border: black solid 1px;
 }
 
-#homepage button:hover {
+#homepage .menu button:hover {
     color: black;
     cursor: pointer;
 }
@@ -71,6 +76,9 @@ body {
 }
 
 
+
+/* SAVED QUOTES MODAL */
+
 /* LOADING SECTION */
 
 #loading-section {
@@ -82,6 +90,32 @@ body {
     height: 100%;
     align-items: center;
     justify-content: center;
+}
+
+.saved-quotes-container .saved-quote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.delete-quote-btn {
+    width: min-content;
+    height: min-content;
+    float: right;
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+.delete-quote-btn:hover {
+    cursor: pointer;
+}
+
+.delete-quote-btn:focus,
+.delete-quote-btn:hover {
+    background-color: transparent;
+    color: var(--main_orange);
 }
 
 
