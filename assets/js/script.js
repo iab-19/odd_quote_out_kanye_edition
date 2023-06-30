@@ -293,7 +293,7 @@ function generateQuestionSet(questionSet) {
 
         // create save quote button
         const saveQuoteButton = $(`
-        <button class="save-quote-btn tooltipped" data-toggled="false" data-position="bottom" data-tooltip="I am a tooltip">
+        <button class="save-quote-btn" data-toggled="false">
             <i class="small material-icons"></i>
         </button>`);
         saveQuoteButton.data('quote', JSON.stringify(quote));
@@ -422,7 +422,7 @@ function init() {
     beginFetchingQuotes();
 
     $(document).ready(function(){
-        $('.tooltipped').tooltip();
+        $('.modal').modal();
     });
 
     $('#play-button').on("click", startGame);
