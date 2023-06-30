@@ -176,6 +176,8 @@ function handleSaveQuoteButtonClick(event) {
 
 function kanyeEmotion(emotion) {
     $('.kanye-head').css('background-image', `url("./assets/images/kanye-west-head-${emotion}.png")`);
+    if (emotion === 'neutral') { $('.kanye-head').css('animation-name', 'none'); }
+    else { $('.kanye-head').css('animation-name', emotion); }
 }
 
 // Changed from .css to .addClass to make sure only the outline
@@ -282,7 +284,7 @@ function generateQuestionSet(questionSet) {
             <div class="card-content">
                 <p class="quote-text">${quote.text}</p>
                 <div class="row">
-                    <div class="author-container col s6">
+                    <div class="author-container col s9">
                         <p class="author-text" data-author="">???</p>
                     </div>
                 </div>

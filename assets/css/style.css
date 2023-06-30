@@ -89,17 +89,47 @@ body {
     background-image: url("../images/kanye-west-head-neutral.png");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     transform: rotate(-15deg);
     bottom: -20px;
-    /* top: 25%; */
+    animation-duration: 1.5s;
 }
 
-.kanye-head::before {
+@keyframes happy {
+    from { transform: rotate(-15deg) scale(1); }
+
+    50% { transform: rotate(345deg) scale(2); }
+
+    to { transform: rotate(1065deg) scale(1); }
+}
+
+@keyframes upset {
+    from { transform: rotate(-15deg) scale(1); }
+
+    10% { transform: rotate(15deg) scale(1.125); }
+
+    20% { transform: rotate(-15deg) scale(1.25); }
+
+    30% { transform: rotate(15deg) scale(1.375); }
+
+    40% { transform: rotate(-15deg) scale(1.5); }
+
+    50% { transform: rotate(15deg) scale(1.625); }
+
+    60% { transform: rotate(-15deg) scale(1.75); }
+
+    70% { transform: rotate(15deg) scale(1.875); }
+
+    80% { transform: rotate(-15deg) scale(2); }
+
+    to { transform: rotate(-15deg) scale(1); }
+}
+
+/* .kanye-head::before {
     content: "";
     width: 50px;
     height: 50px;
-
-}
+} */
 
 .quote-text {
     font-size: 120%;
