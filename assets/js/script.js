@@ -4,6 +4,7 @@ const quoteCharacterCap = 80;  // maximum number of characters any quote can hav
 
 var currentQuestion = 0;  // keeps track of which question number the player is on
 let answeredQuestion = false;  // keeps track of if user answered question already
+let score = 0;
 
 var questionLoadInterval;
 const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before checking if quotes are loaded
@@ -175,6 +176,7 @@ function kanyeEmotion(emotion) {
 // Changed from .css to .addClass to make sure only the outline
 // is highlighted
 function displayCorrectAnswer(quoteCardClicked) {
+    score++;
     quoteCardClicked.addClass('correct-answer');
     kanyeEmotion('happy');
 }
@@ -219,6 +221,7 @@ function endGame() {
     hideElement($('#loading-section'));
 
     console.log('END OF GAME!');
+    console.log('Score:', score);
 }
 
 
@@ -366,6 +369,8 @@ function startNewQuestion() {
 // begins a new game
 function startGame() {
     currentQuestion = 0;
+    score = 0;
+
     showElement($('#loading-section'));
     startNewQuestion();
 
