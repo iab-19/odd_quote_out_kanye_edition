@@ -36,8 +36,8 @@
 
             <div class="menu">
                 <button id="play-button">Play</button><br>
-                <button id="how-to-play-button" data-target="how-to-play-modal" class="btn modal-trigger">How to Play</button><br>
-                <button id="saved-quotes-button" data-target="saved-quotes"class="modal-trigger" >Saved Quotes</button><br>
+                <button id="how-to-play-button" data-target="how-to-play-modal" class="modal-trigger">How to Play</button><br>
+                <button id="saved-quotes-button" data-target="saved-quotes" class="modal-trigger">Saved Quotes</button><br>
                 <a href="#credits-modal" class="modal-trigger">Credits</a>
             </div>
 
@@ -81,25 +81,23 @@
                     <div class="modal-footer">
                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                     </div>
-            </div>
-
+            </div>    
 
         </section>
 
         <!-- Loading -->
         <section id="loading-section" class="hide">
             <div class="valign-wrapper">
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-blue-only">
-                      <div class="circle-clipper left">
-                        <div class="circle"></div>
-                      </div><div class="gap-patch">
-                        <div class="circle"></div>
-                      </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                      </div>
+                <div>
+                    <!-- Loading Bar -->
+                    <div class="progress">
+                        <div class="determinate" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
+
+                    <p>Initializing Kanyes...</p>
                 </div>
+                
+
             </div>
 
         </section>
@@ -110,10 +108,10 @@
 
                 <!-- Game header -->
                 <header>
-                    <!-- <progress> ii </progress> -->
+                    <!-- Progress Bar -->
                     <div class="progress">
                         <div id="progress-bar" class="determinate" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            <div class="kanye-head"></div>
+                            <div class="kanye-head" data-img-src="../images/kanye-west-head-neutral.png"></div>
                         </div>
                     </div>
 
@@ -122,49 +120,17 @@
 
                 <!-- Game main content -->
                 <main>
-
-                    <!-- first option adjusted by Jacob-->
-                    <!-- <div class="card quote-card">
-                        <div class="card-content">
-                            <p class="quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                            <div class="row">
-                                <div class="author-container col s6">
-                                    <p class="author-text">???</p>
-                                </div>
-                                <button class="save-quote-btn">
-                                    <i class="small material-icons"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!--second option created by Saron -->
-                    <!-- <div class="divider"></div>
-                    <div class="section">
-                        <h5><button class="quote-btn">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”
-                        </h5></button>
-                        <div id="Author" class="hide">
-                            <p5> Author 2 </p5></div>
-                        <h6></h6>
-                        <a href="my quotes">
-                                <i class="tiny material-icons">bookmark_border</i>
-                        </a>
-                    </div> -->
-
+                
                 </main>
 
                 <!-- Game footer -->
                 <footer>
-                    <div class="controls">
-                        <button class="btn next-btn">
-                            <div class="valign-wrapper">
-                                Next
-                                <i class="material-icons">arrow_forward</i>
-                            </div>
-
-                        </button>
-                        <button id="score-btn" class="score-btn">Current score</button>
-                    </div>
+                    <button class="btn next-btn">
+                        <div class="valign-wrapper">
+                            Next
+                            <i class="material-icons">arrow_forward</i>
+                        </div>
+                    </button>
                 </footer>
             </div>
 
