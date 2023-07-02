@@ -110,7 +110,7 @@ blockquote {
     align-items: center;
 }
 
-#homepage .menu button {
+.menu button {
     width: 15%;
     min-width: 10rem;
     /* height: 40px; */
@@ -120,29 +120,29 @@ blockquote {
     border: black solid 1px;
 }
 
-#homepage .menu .btn,
-#homepage .menu .btn-flat {
+.menu .btn,
+.menu .btn-flat {
     border: none;
     padding: 5px;
     text-transform: none;
     height: auto;
 }
 
-#homepage .menu .btn-outline {
+.menu .btn-outline {
     border: 3px solid var(--main-orange);
     color: var(--main-orange);
     background-color: transparent;
 }
 
-#homepage .menu button:hover,
-#homepage .menu button:focus {
+.menu button:hover,
+.menu button:focus {
     /* color: black; */
     background-color: var(--light-orange);
     cursor: pointer;
 }
 
-#homepage .menu .btn-outline:hover,
-#homepage .menu .btn-outline:focus {
+.menu .btn-outline:hover,
+.menu .btn-outline:focus {
     border: 3px solid var(--main-orange);
     color: white;
     background-color: var(--main-orange);
@@ -340,23 +340,39 @@ span{
 .save-quote-btn[data-toggled="true"] .material-icons::before {
     content: "bookmark";
     cursor: pointer;
+    color: var(--main-orange);
 }
 
-.endPageButton{
-  margin-bottom:10px;
-  background-color:var(--main-orange);
-  padding-top:10px;
-  padding-bottom:10px;
-   display: flex;
-    justify-content: center;
-align-content: center;
-  }
+/* Change color of border if selected quote is corrrect or incorrect */
+.correct-answer {
+    border: 3px solid var(--correct-green);
+}
+.incorrect-answer {
+    border: 3px solid var(--incorrect-red);
+}
 
-  #currentscore{
+.next-btn {
+    visibility: hidden;
+}
+
+
+/* END PAGE */
+
+.endPageButton {
+    margin-bottom:10px;
+    background-color:var(--main-orange);
+    padding-top:10px;
+    padding-bottom:10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#currentscore .menu,
+#currentscore .message {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-  }
+}
 

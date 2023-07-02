@@ -26,18 +26,18 @@
     </header>
 
     <main>
-      <div id="saved-quotes" class="modal">
-        <div class="modal-content">
-            <h4>Saved Quotes</h4>
-            <div class="saved-quotes-container"></div>
+        <div id="saved-quotes" class="modal">
+            <div class="modal-content">
+                <h4>Saved Quotes</h4>
+                <div class="saved-quotes-container"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
-    </div>
 
         <!-- Home page -->
-        <section id="homepage" class="hide">
+        <section id="homepage">
             <header>
                 <div class="color-background">
                     <h1 style="margin-bottom: 0;">Odd Quote Out:</h1>
@@ -52,7 +52,7 @@
                     <i class="material-icons">help</i>
                     How to Play
                 </button>
-                <button  id="saved-quotes-btn" data-target="saved-quotes" class="btn-flat modal-trigger icon-btn btn-outline">
+                <button data-target="saved-quotes" class="saved-quotes-btn btn-flat modal-trigger icon-btn btn-outline">
                     <i class="material-icons">bookmark</i>
                     Saved Quotes
                 </button>
@@ -169,25 +169,20 @@
                 </footer>
             </div>
 
-
-
         </section>
 
         <!-- End page -->
-
-        <section id="currentscore" >
-                
-                <div></div>
-                          <div>
-                        <div>
-                        <button  class="endPageButton"id="play-again">Play Again</button>
-                        <button id="saved-quotes-btn" class=" endPageButton modal-trigger" data-target="saved-quotes">Saved Quotes</button>
-                        </div>
-                          </div>
-
-  
-
+        <section id="currentscore" class="hide">
+            <div class="message"></div>
+            <div class="menu">
+                <button id="play-again" class="endPageButton btn-flat">Play Again</button>
+                <button data-target="saved-quotes" class="saved-quotes-btn btn-flat modal-trigger icon-btn btn-outline">
+                    <i class="material-icons">bookmark</i>
+                    Saved Quotes
+                </button>
+            </div>
         </section>
+
     </main>
 
     <footer>
