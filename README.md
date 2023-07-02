@@ -1,3 +1,14 @@
+# Group Project - 1
+
+## Description
+
+## Installation
+
+## Usage
+
+## License
+
+## BADGES
 # Odd Quote Out: **Kanye Edition**
 
 ## Credits
@@ -15,3 +26,6 @@ Images used:
 Other Resources
 - jQuery
 - [Materialize](https://materializecss.com/)
+
+
+https://www.eonline.com/photos/12838/kanye-west-s-most-outrageous-quotes

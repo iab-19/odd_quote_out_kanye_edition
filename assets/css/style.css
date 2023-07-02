@@ -154,6 +154,10 @@ blockquote {
     margin-bottom: 40px !important;
 }
 
+span{
+  font-weight: bolder;
+  font-size: 18px;
+}
 
 /* SAVED QUOTES MODAL */
 
@@ -292,6 +296,7 @@ blockquote {
     height: 50px;
 } */
 
+
 .quote-text {
     font-size: 120%;
 }
@@ -307,20 +312,6 @@ blockquote {
 
 .author-text::before {
     content: "- "
-}
-
-.btn {
-    background-color: var(--main-orange);
-}
-
-.btn:hover{
-    background-color: var(--main-orange);
-    color: black;
-}
-
-.btn:focus {
-    background-color: #c96b00;
-    color: black;
 }
 
 .save-quote-btn {
@@ -349,18 +340,23 @@ blockquote {
 .save-quote-btn[data-toggled="true"] .material-icons::before {
     content: "bookmark";
     cursor: pointer;
-    color: var(--main-orange);
 }
 
-/* Change color of border if selected quote is corrrect
-    or incorrect */
-.correct-answer {
-    border: 3px solid var(--correct-green);
-}
-.incorrect-answer {
-    border: 3px solid var(--incorrect-red);
-}
+.endPageButton{
+  margin-bottom:10px;
+  background-color:var(--main-orange);
+  padding-top:10px;
+  padding-bottom:10px;
+   display: flex;
+    justify-content: center;
+align-content: center;
+  }
 
-.next-btn {
-    visibility: hidden;
-}
+  #currentscore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
