@@ -1,17 +1,20 @@
-const numberOfQuestions = 10;  // number of questions per quiz
+const numberOfQuestions = 3;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
 var currentQuestion = 0;  // keeps track of which question number the player is on
 let answeredQuestion = false;  // keeps track of if user answered question already
+
 let score = 0;
+score = document.querySelectorAll("#currentscore"); // contains the score of correct answered questions - the end page section
+score_El = document.getElementById("#score"); // contains the score of correct answered questions -displaying beside the next button
+score_El=score;
 
 var questionLoadInterval;
 const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before checking if quotes are loaded
 
 var otherQuotes = [];  // contains the normal quotes that will be used in the quiz
 var kanyeQuotes = [];  // contains the Kanye West quotes that will be used in the quiz
-
 
 class Quote {
     constructor(text, author) {
@@ -105,7 +108,6 @@ function fetchKanyeQuotes() {
             const quoteObject = new Quote(quote, 'Kanye West');
             kanyeQuotes = kanyeQuotes.concat(filterQuote(quoteObject, kanyeQuotes));
 
-
             // fetch more quotes if there aren't enough to fill all questions
             if (kanyeQuotes.length < numberOfQuestions - currentQuestion) { fetchKanyeQuotes(); }
 
@@ -176,17 +178,20 @@ function kanyeEmotion(emotion) {
 // Changed from .css to .addClass to make sure only the outline
 // is highlighted
 function displayCorrectAnswer(quoteCardClicked) {
+    
     score++;
+   $('#score').text(score);
+
     quoteCardClicked.addClass('correct-answer');
     kanyeEmotion('happy');
 }
 
 
 function displayIncorrectAnswer(quoteCardClicked) {
+    $('#score').text(score);
     quoteCardClicked.addClass('incorrect-answer');
     kanyeEmotion('upset');
 }
-
 
 // handles when a quote card is click
 function handleQuoteCardClick(event) {
@@ -209,6 +214,7 @@ function handleQuoteCardClick(event) {
     });
 
     // show next button
+
     $('.next-btn').css('visibility', 'inherit');
 
     if (quote.author === 'Kanye West') { displayCorrectAnswer(quoteCard); }
@@ -217,8 +223,44 @@ function handleQuoteCardClick(event) {
 
 
 function endGame() {
+    const scoreMessage = $('#currentscore .message');
+    scoreMessage.empty();
+
     hideElement($('#game-section'));
     hideElement($('#loading-section'));
+    showElement($('#currentscore'));
+
+    const image = document.createElement("img");
+
+    if (score >= 6) {
+        scoreMessage.append(`
+            <h1>-:New Highscore:-</h1>
+            <h2 class="center-align">${score}</h2>
+            <h3 class="center-align">Kanye is impressed!</h3> 
+            <div class="card-image center-align"></div>`);
+        image.src = "./assets/images/kanyeisImpressed.png";
+        scoreMessage.append(image);
+    }
+
+    else if (score > 0) {
+        scoreMessage.append(`
+            <h1>You scored ${score} points!</h1>
+            <h2 class="center-align">${score}!</h2>
+            <h3 class="center-align" >I'm like a machine. I'm a robot. You cannot offend a robot</h3> 
+            <div class="card-image center-align"></div>`);
+        image.src = "./assets/images/low-score.png";
+        scoreMessage.append(image);
+    }
+
+    else {
+        scoreMessage.append(`
+            <h1>Your score is ${score}</h1>
+            <h2>${score}!</h2>
+            <h3 class="center-align">Come on now! How could you not know me and not want to be me?</h3>
+            <div class="card-image center-align"></div>`);
+        image.src = "./assets/images/zero-points.png";
+        scoreMessage.append(image);
+    }
 
     console.log('END OF GAME!');
     console.log('Score:', score);
@@ -359,6 +401,7 @@ function startNewQuestion() {
     // if more time is needed to load quotes and waiting has not begun
     else if (!questionLoadInterval) {
         // begin rechecking if quotes are loaded on interval
+        beginFetchingQuotes();
         questionLoadInterval = setInterval(startNewQuestion, waitForQuestionLoadTime);
     }
 
@@ -371,12 +414,13 @@ function startGame() {
     currentQuestion = 0;
     score = 0;
 
+    hideElement($('#currentscore'));
     showElement($('#loading-section'));
     startNewQuestion();
 
     hideElement($('#homepage'));
-}
 
+}
 
 // begins fetching quotes from APIs
 function beginFetchingQuotes() {
@@ -426,10 +470,10 @@ function init() {
     });
 
     $('#play-button').on("click", startGame);
-    $('#saved-quotes-button').on("click", displaySavedQuotes);
+    $('.saved-quotes-btn').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
-
-    updateProgressBar(0);
+    $('#play-again').on("click", startGame);
+   updateProgressBar(0);
 }
 
 

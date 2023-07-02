@@ -110,7 +110,7 @@ blockquote {
     align-items: center;
 }
 
-#homepage .menu button {
+.menu button {
     width: 15%;
     min-width: 10rem;
     /* height: 40px; */
@@ -120,29 +120,29 @@ blockquote {
     border: black solid 1px;
 }
 
-#homepage .menu .btn,
-#homepage .menu .btn-flat {
+.menu .btn,
+.menu .btn-flat {
     border: none;
     padding: 5px;
     text-transform: none;
     height: auto;
 }
 
-#homepage .menu .btn-outline {
+.menu .btn-outline {
     border: 3px solid var(--main-orange);
     color: var(--main-orange);
     background-color: transparent;
 }
 
-#homepage .menu button:hover,
-#homepage .menu button:focus {
+.menu button:hover,
+.menu button:focus {
     /* color: black; */
     background-color: var(--light-orange);
     cursor: pointer;
 }
 
-#homepage .menu .btn-outline:hover,
-#homepage .menu .btn-outline:focus {
+.menu .btn-outline:hover,
+.menu .btn-outline:focus {
     border: 3px solid var(--main-orange);
     color: white;
     background-color: var(--main-orange);
@@ -154,6 +154,10 @@ blockquote {
     margin-bottom: 40px !important;
 }
 
+span{
+  font-weight: bolder;
+  font-size: 18px;
+}
 
 /* SAVED QUOTES MODAL */
 
@@ -292,6 +296,7 @@ blockquote {
     height: 50px;
 } */
 
+
 .quote-text {
     font-size: 120%;
 }
@@ -307,20 +312,6 @@ blockquote {
 
 .author-text::before {
     content: "- "
-}
-
-.btn {
-    background-color: var(--main-orange);
-}
-
-.btn:hover{
-    background-color: var(--main-orange);
-    color: black;
-}
-
-.btn:focus {
-    background-color: #c96b00;
-    color: black;
 }
 
 .save-quote-btn {
@@ -352,8 +343,7 @@ blockquote {
     color: var(--main-orange);
 }
 
-/* Change color of border if selected quote is corrrect
-    or incorrect */
+/* Change color of border if selected quote is corrrect or incorrect */
 .correct-answer {
     border: 3px solid var(--correct-green);
 }
@@ -364,3 +354,25 @@ blockquote {
 .next-btn {
     visibility: hidden;
 }
+
+
+/* END PAGE */
+
+.endPageButton {
+    margin-bottom:10px;
+    background-color:var(--main-orange);
+    padding-top:10px;
+    padding-bottom:10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#currentscore .menu,
+#currentscore .message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
