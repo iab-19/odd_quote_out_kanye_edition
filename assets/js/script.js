@@ -1,14 +1,10 @@
-const numberOfQuestions = 3;  // number of questions per quiz
+const numberOfQuestions = 10;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
 var currentQuestion = 0;  // keeps track of which question number the player is on
 let answeredQuestion = false;  // keeps track of if user answered question already
-
-let score = 0;
-score = document.querySelectorAll("#currentscore"); // contains the score of correct answered questions - the end page section
-score_El = document.getElementById("#score"); // contains the score of correct answered questions -displaying beside the next button
-score_El=score;
+let score = 0;  // keeps track of amount of questions answered correctly
 
 var questionLoadInterval;
 const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before checking if quotes are loaded
@@ -179,6 +175,7 @@ function handleSaveQuoteButtonClick(event) {
         button.attr('data-toggled', 'false');
         removeQuoteFromStorage(quoteObject);
     }
+
     else {
         button.attr('data-toggled', 'true');
         saveQuoteToStorage(quoteObject);
@@ -186,19 +183,17 @@ function handleSaveQuoteButtonClick(event) {
 }
 
 
+// changes the kanye head's image and animation depending on given emotion
 function kanyeEmotion(emotion) {
     $('.kanye-head').css('background-image', `url("./assets/images/kanye-west-head-${emotion}.png")`);
     if (emotion === 'neutral') { $('.kanye-head').css('animation-name', 'none'); }
     else { $('.kanye-head').css('animation-name', emotion); }
 }
 
-// Changed from .css to .addClass to make sure only the outline
-// is highlighted
+
 function displayCorrectAnswer(quoteCardClicked) {
-    
     score++;
    $('#score').text(score);
-
     quoteCardClicked.addClass('correct-answer');
     kanyeEmotion('happy');
 }
@@ -231,7 +226,6 @@ function handleQuoteCardClick(event) {
     });
 
     // show next button
-
     $('.next-btn').css('visibility', 'inherit');
 
     if (quote.author === 'Kanye West') { displayCorrectAnswer(quoteCard); }
@@ -273,7 +267,7 @@ function endGame() {
 
     // Above 0
     else if (score > 0) {
-        heading.text(`You scored ${score} point${s}!`);
+        heading.text(`You scored ${score} point${s}.`);
         subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
         image.attr("src", "./assets/images/low-score.png");
     }
@@ -494,15 +488,14 @@ function displaySavedQuotes() {
 function init() {
     beginFetchingQuotes();
 
-    $(document).ready(function(){
-        $('.modal').modal();
-    });
+    $(document).ready(() => { $('.modal').modal(); });
 
     $('#play-button').on("click", startGame);
     $('.saved-quotes-btn').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
     $('#play-again').on("click", startGame);
-   updateProgressBar(0);
+    
+    updateProgressBar(0);
 }
 
 
