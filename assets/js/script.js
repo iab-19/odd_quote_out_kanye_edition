@@ -1,14 +1,10 @@
-const numberOfQuestions = 3;  // number of questions per quiz
+const numberOfQuestions = 10;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
 var currentQuestion = 0;  // keeps track of which question number the player is on
 let answeredQuestion = false;  // keeps track of if user answered question already
-
-let score = 0;
-score = document.querySelectorAll("#currentscore"); // contains the score of correct answered questions - the end page section
-score_El = document.getElementById("#score"); // contains the score of correct answered questions -displaying beside the next button
-score_El=score;
+let score = 0;  // keeps track of amount of questions answered correctly
 
 var questionLoadInterval;
 const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before checking if quotes are loaded
@@ -116,6 +112,23 @@ function fetchKanyeQuotes() {
 }
 
 
+// returns the user's highscore saved in local storage
+function getHighscore() {
+    const storageHighscore = localStorage.getItem("highscore");
+
+    if (storageHighscore) { return Number(storageHighscore); }
+    else { return 0; }
+}
+
+
+// updates the highscore in local storage and returns true if a new highscore was reached
+function newHighscore() {
+    const newHighscore = score > getHighscore();
+    localStorage.setItem("highscore", Math.max(score, getHighscore()));
+    return newHighscore;
+}
+
+
 // returns an array of all quotes saved in local storage
 function getSavedQuotes() {
     const savedQuotesFromStorage = localStorage.getItem("savedQuotes");
@@ -162,6 +175,7 @@ function handleSaveQuoteButtonClick(event) {
         button.attr('data-toggled', 'false');
         removeQuoteFromStorage(quoteObject);
     }
+
     else {
         button.attr('data-toggled', 'true');
         saveQuoteToStorage(quoteObject);
@@ -169,19 +183,17 @@ function handleSaveQuoteButtonClick(event) {
 }
 
 
+// changes the kanye head's image and animation depending on given emotion
 function kanyeEmotion(emotion) {
     $('.kanye-head').css('background-image', `url("./assets/images/kanye-west-head-${emotion}.png")`);
     if (emotion === 'neutral') { $('.kanye-head').css('animation-name', 'none'); }
     else { $('.kanye-head').css('animation-name', emotion); }
 }
 
-// Changed from .css to .addClass to make sure only the outline
-// is highlighted
+
 function displayCorrectAnswer(quoteCardClicked) {
-    
     score++;
    $('#score').text(score);
-
     quoteCardClicked.addClass('correct-answer');
     kanyeEmotion('happy');
 }
@@ -214,7 +226,6 @@ function handleQuoteCardClick(event) {
     });
 
     // show next button
-
     $('.next-btn').css('visibility', 'inherit');
 
     if (quote.author === 'Kanye West') { displayCorrectAnswer(quoteCard); }
@@ -229,38 +240,46 @@ function endGame() {
     hideElement($('#game-section'));
     hideElement($('#loading-section'));
     showElement($('#currentscore'));
+    updateLoadingBar(0);
 
-    const image = document.createElement("img");
+    const highscoreMessage = $('<p class="highscore-message">New Highscore!</p>');
+    if (newHighscore()) { scoreMessage.append(highscoreMessage); }
 
-    if (score >= 6) {
-        scoreMessage.append(`
-            <h1>-:New Highscore:-</h1>
-            <h2 class="center-align">${score}</h2>
-            <h3 class="center-align">Kanye is impressed!</h3> 
-            <div class="card-image center-align"></div>`);
-        image.src = "./assets/images/kanyeisImpressed.png";
-        scoreMessage.append(image);
+    const heading = $('<h1>');
+    const subheading = $('<h3 class="center-align">');
+    const image = $('<img>');
+
+    const s = (score !== 1) ? "s" : "";
+
+    // perfect score
+    if (score === numberOfQuestions) {
+        heading.text(`Perfection. You scored all ${score} points.`);
+        subheading.text(`You've come close to my level.`);
+        image.attr("src", "./assets/images/perfection-kanye.jpeg");
     }
 
+    // 75% correct
+    else if (score >= numberOfQuestions * 0.75) {
+        heading.text(`You scored ${score} points!`);
+        subheading.text(`Kanye is impressed!`);
+        image.attr("src", "./assets/images/kanyeisImpressed.png");
+    }
+
+    // Above 0
     else if (score > 0) {
-        scoreMessage.append(`
-            <h1>You scored ${score} points!</h1>
-            <h2 class="center-align">${score}!</h2>
-            <h3 class="center-align" >I'm like a machine. I'm a robot. You cannot offend a robot</h3> 
-            <div class="card-image center-align"></div>`);
-        image.src = "./assets/images/low-score.png";
-        scoreMessage.append(image);
+        heading.text(`You scored ${score} point${s}.`);
+        subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
+        image.attr("src", "./assets/images/low-score.png");
     }
 
+    // 0
     else {
-        scoreMessage.append(`
-            <h1>Your score is ${score}</h1>
-            <h2>${score}!</h2>
-            <h3 class="center-align">Come on now! How could you not know me and not want to be me?</h3>
-            <div class="card-image center-align"></div>`);
-        image.src = "./assets/images/zero-points.png";
-        scoreMessage.append(image);
+        heading.text(`Your score is ${score}...`);
+        subheading.text(`Come on now! How could you not know me and not want to be me?`);
+        image.attr("src", "./assets/images/zero-points.png");
     }
+
+    scoreMessage.append(heading, subheading, image);
 
     console.log('END OF GAME!');
     console.log('Score:', score);
@@ -348,12 +367,16 @@ function generateQuestionSet(questionSet) {
 
 
 // updates loading bar display based on amount of quotes loaded
-function updateLoadingBar() {
-    // calculate percent
-    const maxValue = numberOfOtherQuotes + 1;
-    const currentValue = Math.min(kanyeQuotes.length, 1) + Math.min(otherQuotes.length, numberOfOtherQuotes);
-    const percent = Math.round(currentValue / maxValue * 100);
-
+function updateLoadingBar(forcePercent=undefined) {
+    let percent = forcePercent;
+    
+    if (!forcePercent) {
+        // calculate percent
+        const maxValue = numberOfOtherQuotes + 1;
+        const currentValue = Math.min(kanyeQuotes.length, 1) + Math.min(otherQuotes.length, numberOfOtherQuotes);
+        percent = Math.round(currentValue / maxValue * 100);
+    }
+    
     // update display
     const loadingBar = $('#loading-section .determinate');
     loadingBar.attr('aria-valuenow', String(percent));
@@ -465,15 +488,14 @@ function displaySavedQuotes() {
 function init() {
     beginFetchingQuotes();
 
-    $(document).ready(function(){
-        $('.modal').modal();
-    });
+    $(document).ready(() => { $('.modal').modal(); });
 
     $('#play-button').on("click", startGame);
     $('.saved-quotes-btn').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
     $('#play-again').on("click", startGame);
-   updateProgressBar(0);
+    
+    updateProgressBar(0);
 }
 
 
