@@ -374,4 +374,27 @@ span{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+/* mobile-friendly feature */    
+@media (min-width: 300px){
+
+header {
+        margin: 0;
+    }
+    strong,
+h1, h2 {
+    font-weight: 350;
+}
+
+
+h3, h4, h5, h6, .subtitle {
+    font-weight: 300;
+    
+}
+.endPageButton {
+    margin: bottom 0;
+    margin-top:0;
+    padding-top:3px;
+    padding-bottom:3px;
+}
 }
