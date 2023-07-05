@@ -1,4 +1,4 @@
-const numberOfQuestions = 10;  // number of questions per quiz
+const numberOfQuestions = 1;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
@@ -246,7 +246,7 @@ function endGame() {
 
     const heading = $('<h2>');
     const subheading = $('<h3 class="center-align subtitle">');
-    const image = $('<img>');
+    const imageContainer = $('<div class="image-container">');
 
     const s = (score !== 1) ? "s" : "";
 
@@ -254,31 +254,31 @@ function endGame() {
     if (score === numberOfQuestions) {
         heading.text(`Perfection. You scored all ${score} points.`);
         subheading.text(`You've come close to my level.`);
-        image.attr("src", "./assets/images/perfection-kanye.jpeg");
+        imageContainer.css('background-image', 'url("./assets/images/perfection-kanye.jpeg")');
     }
 
     // 70% correct
     else if (score >= numberOfQuestions * 0.7) {
         heading.text(`You scored ${score} points!`);
         subheading.text(`Kanye is impressed!`);
-        image.attr("src", "./assets/images/kanyeisImpressed.png");
+        imageContainer.css('background-image', 'url("./assets/images/kanyeisImpressed.png")');
     }
 
     // Above 0
     else if (score > 0) {
         heading.text(`You scored ${score} point${s}.`);
         subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
-        image.attr("src", "./assets/images/low-score.png");
+        imageContainer.css('background-image', 'url("./assets/images/low-score.png")');
     }
 
     // 0
     else {
         heading.text(`Your score is ${score}...`);
         subheading.text(`Come on now! How could you not know me and not want to be me?`);
-        image.attr("src", "./assets/images/zero-points.png");
+        imageContainer.css('background-image', 'url("./assets/images/zero-points.png")');
     }
 
-    scoreMessage.append(heading, subheading, image);
+    scoreMessage.append(heading, subheading, imageContainer);
 
     showElement($('#currentscore'));
     showElement($('body > footer'));

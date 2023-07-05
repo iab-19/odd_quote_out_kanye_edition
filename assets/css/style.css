@@ -409,6 +409,14 @@ blockquote {
     align-content: center;
 }
 
+#currentscore .image-container {
+    width: 80%;
+    height: min(400px, 40vh);
+    max-width: 500px;
+    background-position: top center;
+    background-size: cover;
+}
+
 #currentscore .menu,
 #currentscore .message {
     display: flex;
@@ -430,7 +438,7 @@ blockquote {
         font-weight: 350;
     }
     
-    h3, h4, h5, h6, .subtitle {
+    h3, h4, h5, h6 {
         font-weight: 300;
     }
 
