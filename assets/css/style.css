@@ -17,12 +17,19 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+html {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background-image: url("../images/v748-toon-111.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center right;
-    min-height: 100vh;
+
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
@@ -412,6 +419,28 @@ blockquote {
 
 
 /* MEDIA QUERIES */
+
+@media screen and (min-width: 300px) {
+    header {
+        margin: 0;
+    }
+
+    strong,
+    h1, h2 {
+        font-weight: 350;
+    }
+    
+    h3, h4, h5, h6, .subtitle {
+        font-weight: 300;
+    }
+
+    .endPageButton {
+        margin: bottom 0;
+        margin-top:0;
+        padding-top:3px;
+        padding-bottom:3px;
+    }
+}
 
 @media screen and (min-width: 550px) {
     h1, h2 {
