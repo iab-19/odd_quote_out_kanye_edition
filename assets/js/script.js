@@ -418,7 +418,7 @@ function startNewQuestion() {
         showElement($('#game-section'));
 
         currentQuestion++;
-        updateProgressBar(Math.round((currentQuestion - 1) / numberOfQuestions * 100));
+        updateProgressBar(Math.round(currentQuestion / numberOfQuestions * 100));
     }
 
     // if more time is needed to load quotes and waiting has not begun

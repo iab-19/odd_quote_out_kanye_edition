@@ -26,9 +26,9 @@ body {
     /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
-header {
+/* header {
     margin-top: 40px;
-}
+} */
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
@@ -59,9 +59,14 @@ span {
 }
 
 .subtitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
     line-height: 110%;
     margin: 1.5rem 0 0.8rem 0;
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
 }
 
 .color-background {
@@ -71,7 +76,7 @@ span {
 }
 
 .card .card-content {
-    padding: 20px;
+    padding: 15px;
 }
 
 .icon-btn {
@@ -105,6 +110,10 @@ blockquote {
 
 #homepage {
     text-align: center;
+}
+
+#homepage header {
+    margin-top: 40px;
 }
 
 #homepage .color-background * {
@@ -235,11 +244,15 @@ blockquote {
     justify-content: center;
 }
 
+#loading-section p {
+    font-size: 150%;
+}
+
 
 /* GAME */
 
 #game-section header {
-    margin-top: 30px;
+    margin: 30px auto;
 }
 
 #game-section header h1 {
@@ -297,24 +310,24 @@ blockquote {
     to { transform: rotate(-15deg) scale(1); }
 }
 
-/* .kanye-head::before {
-    content: "";
-    width: 50px;
-    height: 50px;
-} */
-
-
-.quote-text {
-    font-size: 120%;
-}
-
 .quote-text::before,
 .quote-text::after {
     content: '"';
 }
 
+/* .quote-card {
+    border: 3px solid transparent;
+} */
+
 .quote-card .row {
     margin-bottom: 0px;
+}
+
+.author-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .author-text::before {
@@ -386,7 +399,7 @@ blockquote {
 
 /* MEDIA QUERIES */
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 550px) {
     h1, h2 {
         letter-spacing: -0.29rem;
     }
@@ -403,5 +416,13 @@ blockquote {
         font-size: 2.92rem;
         line-height: 110%;
         margin: 1.9466666667rem 0 1.168rem 0;
+    }
+
+    .card .card-content {
+        padding: 20px;
+    }
+
+    .quote-text {
+        font-size: 120%;
     }
 }
