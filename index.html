@@ -20,20 +20,36 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
-<body></body>
-    <header>
-
-    </header>
+<body>
+    <header></header>
 
     <main>
-        <div id="saved-quotes" class="modal">
+        <!-- Saved Quotes Modal -->
+        <div id="saved-quotes" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Saved Quotes</h4>
                 <div class="saved-quotes-container"></div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                <a href="#!" class="modal-close waves-effect waves-orange btn-flat">Close</a>
             </div>
+        </div>
+
+        <!-- Credits Modal -->
+        <div id="credits-modal" class="modal">
+            <div class="modal-content center-align">
+                <h3>Credits</h3>
+                <!-- Names of contributors -->
+                <h5>Hafsah Nasreen</h5>
+                <h5>Jacob Medina</h5>
+                <h5>Ibrahima Barry</h5>
+                <h5>Saron Kal</h5>
+                <br/>
+                <a href="https://github.com/iab-19/odd_quote_out_kanye_edition" target="_blank">GitHub Repository</a>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-orange btn-flat">Close</a>
+                </div>
         </div>
 
         <!-- Home page -->
@@ -56,7 +72,6 @@
                     <i class="material-icons">bookmark</i>
                     Saved Quotes
                 </button>
-                <a href="#credits-modal" class="credits-anchor modal-trigger">Credits</a>
             </div>
 
 
@@ -70,49 +85,14 @@
                             <p><strong>4 quotes</strong> will display on the screen:</p>
                             <p style="margin-left: 20px; margin-top: 8px;">- 1 from Kanye West</p>
                             <p style="margin-left: 20px; margin-top: 8px;">- The rest from other famous people</p>
-                            <p>Guess <strong>Kanye West's</strong> quote to get 1 point!</p>
+                            <p>Guess <strong>Kanye West's</strong> quote in each question to earn points!</p>
                         </div>
                     </div>
-                   
-                    <!-- <p>
-                        4 quotes will be displayed on the screen, 3 will be from random famous people and 1 will be from Kanye West<br>
-                    You will get 1 point if you correctly guess which one is Kanye's quote. <br>
-                    You can also save a quote you like by pressing the bookmark button located on each quote.
-                    </p> -->
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a href="#!" class="modal-close waves-effect waves-orange btn-flat">Close</a>
                 </div>
             </div>
-
-            <!-- Saved Quotes Modal -->
-            <!-- <div id="saved-quotes" class="modal modal-fixed-footer">
-                <div class="modal-content">
-                    <h4>Saved Quotes</h4>
-                    <div class="saved-quotes-container"></div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                </div>
-            </div> -->
-
-            <!-- Credits Modal -->
-            <div id="credits-modal" class="modal">
-                <div class="modal-content center-align">
-                    <h3>Credits</h3>
-                    <!-- Names of contributors -->
-                    <h4>Hafsah Nasreen</h4>
-                    <h4>Jacob Medina</h4>
-                    <h4>Ibrahima Barry</h4>
-                    <h4>Saron Kal</h4>
-                    <br/>
-                    <a href="https://github.com/iab-19/odd_quote_out_kanye_edition" target="_blank">GitHub Repository</a>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                    </div>
-            </div>    
-
         </section>
 
         <!-- Loading -->
@@ -126,10 +106,7 @@
 
                     <p>Initializing Kanyes...</p>
                 </div>
-                
-
             </div>
-
         </section>
 
         <!-- Game -->
@@ -155,15 +132,15 @@
 
                 <!-- Game footer -->
                 <footer>
-                    <div class="controls">
-                        <button class="btn next-btn">
-                            <div class="valign-wrapper">
+                    <div class="menu justify-content-center">
+                        <button class="btn-flat next-btn">
+                            <div class="valign-wrapper center-align justify-content-center">
                                 Next
                                 <i class="material-icons">arrow_forward</i>
                             </div>
                             
                         </button>
-                        <span id="score">Current score: </span>
+                        <span id="score" class="hide">Current score: </span>
 
                     </div>
                 </footer>
@@ -172,7 +149,7 @@
         </section>
 
         <!-- End page -->
-        <section id="currentscore" class="hide">
+        <section id="currentscore" class="container hide">
             <div class="message"></div>
             <div class="menu">
                 <button id="play-again" class="endPageButton btn-flat">Play Again</button>
@@ -185,8 +162,8 @@
 
     </main>
 
-    <footer>
-
+    <footer class="center-align">
+        <a href="#credits-modal" class="credits-anchor modal-trigger">Credits</a>        </div>
     </footer>
 
     <!-- jQuery -->

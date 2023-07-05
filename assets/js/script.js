@@ -239,14 +239,13 @@ function endGame() {
 
     hideElement($('#game-section'));
     hideElement($('#loading-section'));
-    showElement($('#currentscore'));
     updateLoadingBar(0);
 
     const highscoreMessage = $('<p class="highscore-message">New Highscore!</p>');
     if (newHighscore()) { scoreMessage.append(highscoreMessage); }
 
-    const heading = $('<h1>');
-    const subheading = $('<h3 class="center-align">');
+    const heading = $('<h2>');
+    const subheading = $('<h3 class="center-align subtitle">');
     const image = $('<img>');
 
     const s = (score !== 1) ? "s" : "";
@@ -258,8 +257,8 @@ function endGame() {
         image.attr("src", "./assets/images/perfection-kanye.jpeg");
     }
 
-    // 75% correct
-    else if (score >= numberOfQuestions * 0.75) {
+    // 70% correct
+    else if (score >= numberOfQuestions * 0.7) {
         heading.text(`You scored ${score} points!`);
         subheading.text(`Kanye is impressed!`);
         image.attr("src", "./assets/images/kanyeisImpressed.png");
@@ -281,8 +280,8 @@ function endGame() {
 
     scoreMessage.append(heading, subheading, image);
 
-    console.log('END OF GAME!');
-    console.log('Score:', score);
+    showElement($('#currentscore'));
+    showElement($('body > footer'));
 }
 
 
@@ -418,7 +417,7 @@ function startNewQuestion() {
         showElement($('#game-section'));
 
         currentQuestion++;
-        updateProgressBar(Math.round((currentQuestion - 1) / numberOfQuestions * 100));
+        updateProgressBar(Math.round(currentQuestion / numberOfQuestions * 100));
     }
 
     // if more time is needed to load quotes and waiting has not begun
@@ -437,11 +436,11 @@ function startGame() {
     currentQuestion = 0;
     score = 0;
 
+    hideElement($('#homepage'));
     hideElement($('#currentscore'));
+    hideElement($('body > footer'));
     showElement($('#loading-section'));
     startNewQuestion();
-
-    hideElement($('#homepage'));
 
 }
 
