@@ -21,7 +21,7 @@ body {
     background-image: url("../images/v748-toon-111.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 100vh;
+    min-height: 95vh;
     /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
@@ -374,5 +374,27 @@ span{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+/* mobile-friendly feature */    
+@media (min-width: 300px){
+
+header {
+        margin: 0;
+    }
+    strong,
+h1, h2 {
+    font-weight: 350;
 }
 
+
+h3, h4, h5, h6, .subtitle {
+    font-weight: 300;
+    
+}
+.endPageButton {
+    margin: bottom 0;
+    margin-top:0;
+    padding-top:3px;
+    padding-bottom:3px;
+}
+}
