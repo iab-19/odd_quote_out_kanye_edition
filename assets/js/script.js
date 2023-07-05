@@ -268,14 +268,14 @@ function endGame() {
     else if (score > 0) {
         heading.text(`You scored ${score} point${s}.`);
         subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
-        image.attr("src", "./assets/images/low-score.png");
+        image.attr("src", "./assets/images/kanye-low-score.jpg");
     }
 
     // 0
     else {
         heading.text(`Your score is ${score}...`);
         subheading.text(`Come on now! How could you not know me and not want to be me?`);
-        image.attr("src", "./assets/images/zero-points.png");
+        image.attr("src", "./assets/images/kanye-zero-points.jpg");
     }
 
     scoreMessage.append(heading, subheading, image);
@@ -368,14 +368,14 @@ function generateQuestionSet(questionSet) {
 // updates loading bar display based on amount of quotes loaded
 function updateLoadingBar(forcePercent=undefined) {
     let percent = forcePercent;
-    
+
     if (!forcePercent) {
         // calculate percent
         const maxValue = numberOfOtherQuotes + 1;
         const currentValue = Math.min(kanyeQuotes.length, 1) + Math.min(otherQuotes.length, numberOfOtherQuotes);
         percent = Math.round(currentValue / maxValue * 100);
     }
-    
+
     // update display
     const loadingBar = $('#loading-section .determinate');
     loadingBar.attr('aria-valuenow', String(percent));
@@ -386,7 +386,7 @@ function updateLoadingBar(forcePercent=undefined) {
 // attempts to generate a new question set
 function startNewQuestion() {
     kanyeEmotion('neutral');
-    
+
     // check if last question is finished
     if (currentQuestion >= numberOfQuestions) {
         endGame();
@@ -397,7 +397,7 @@ function startNewQuestion() {
 
     // if enough quotes are loaded for 1 new question
     const enoughQuotesLoaded = (kanyeQuotes.length >= 1) && (otherQuotes.length >= numberOfOtherQuotes);
-    
+
     if (enoughQuotesLoaded) {
         // stop waiting for loading
         if (questionLoadInterval) {
@@ -493,7 +493,7 @@ function init() {
     $('.saved-quotes-btn').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
     $('#play-again').on("click", startGame);
-    
+
     updateProgressBar(0);
 }
 
