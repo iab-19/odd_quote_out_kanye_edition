@@ -1,4 +1,4 @@
-const numberOfQuestions = 1;  // number of questions per quiz
+const numberOfQuestions = 4;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
@@ -254,28 +254,28 @@ function endGame() {
     if (score === numberOfQuestions) {
         heading.text(`Perfection. You scored all ${score} points.`);
         subheading.text(`You've come close to my level.`);
-        imageContainer.css('background-image', 'url("./assets/images/perfection-kanye.jpeg")');
+        imageContainer.css('background-image', 'url("./assets/images/kanye-perfect-points.jpeg")');
     }
 
     // 70% correct
     else if (score >= numberOfQuestions * 0.7) {
         heading.text(`You scored ${score} points!`);
         subheading.text(`Kanye is impressed!`);
-        imageContainer.css('background-image', 'url("./assets/images/kanyeisImpressed.png")');
+        imageContainer.css('background-image', 'url("./assets/images/kanye-high-points.png")');
     }
 
     // Above 0
     else if (score > 0) {
         heading.text(`You scored ${score} point${s}.`);
         subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
-        imageContainer.css('background-image', 'url("./assets/images/low-score.png")');
+        imageContainer.css('background-image', 'url("./assets/images/kanye-low-points.jpg")');
     }
 
     // 0
     else {
         heading.text(`Your score is ${score}...`);
         subheading.text(`Come on now! How could you not know me and not want to be me?`);
-        imageContainer.css('background-image', 'url("./assets/images/zero-points.png")');
+        imageContainer.css('background-image', 'url("./assets/images/kanye-zero-points.jpg")');
     }
 
     scoreMessage.append(heading, subheading, imageContainer);
