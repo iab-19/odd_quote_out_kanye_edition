@@ -21,14 +21,21 @@ body {
     background-image: url("../images/v748-toon-111.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: right 75%;
+    background-position: center right;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
-/* header {
-    margin-top: 40px;
-} */
+main {
+    flex: 1 0 auto;
+}
+
+body > footer {
+    background-color: transparent;
+    padding: 20px 0;
+}
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
@@ -53,6 +60,10 @@ h2 {
     letter-spacing: -0.1rem;
 }
 
+h4 {
+    font-size: 2.24rem;
+}
+
 span {
     font-weight: bolder;
     font-size: 18px;
@@ -73,6 +84,11 @@ span {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: var(--main-orange);
+}
+
+.credits-anchor {
+    color: black;
+    text-decoration: underline;
 }
 
 .card .card-content {
@@ -176,8 +192,6 @@ blockquote {
 }
 
 #homepage .credits-anchor {
-    color: black;
-    text-decoration: underline;
     margin: 40px auto;
 }
 
@@ -412,6 +426,10 @@ blockquote {
         font-size: 3.56rem;
     }
 
+    h4 {
+        font-size: 2.28rem;
+    }
+
     .subtitle {
         font-size: 2.92rem;
         line-height: 110%;
@@ -420,6 +438,11 @@ blockquote {
 
     .card .card-content {
         padding: 20px;
+    }
+
+    #credits-modal h5 {
+        font-size: 2.28rem;
+        margin: 1.52rem 0 0.912rem 0;
     }
 
     .quote-text {
