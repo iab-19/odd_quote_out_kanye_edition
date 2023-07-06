@@ -7,6 +7,7 @@
 - [Usage](#usage)
 - [Features](#features)
 - [Credits](#credits)
+- [Resources](#resources)
 - [License](#license)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +16,7 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-We have developed an odd quote out quiz game for the purpose of entertainment, that includes Kanye's quotes and other quotes said by famous people, and the player would get to choose what they think is the odd one out of the choices on the screen and see how many they get right. The main purpose of the game is entertainment, but it can also  be used to challenge oneself and expand their knowledge of quotes. The idea behind the game is to expand our game to include educational quotes and inspirational other quotes said by other aspiring famous people.
+Odd Quote Out is an entertaining quiz game where players spot quotes from a featured individual hidden among a pool of other quotes. In Kanye Edition, players must guess which quote out of the given four was said by Kanye West. The main purpose of the game is entertainment, but it can also be used to challenge oneself and expand their knowledge of quotes. For future development, the Odd Quote Out quiz formula is flexible enough to include educational, inspirational, and amusing quotes featuring other famous people.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +50,7 @@ The URL will mostly work in all browsers. The preferred Browser is Google Chrome
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### The 'How to Play' button includes the instructions and opens a small window as
+### The 'How to Play?' button includes the instructions and opens a small window as
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ The URL will mostly work in all browsers. The preferred Browser is Google Chrome
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### The user will know when they have given a correct answer as it will turn green and the incorrect answer will turn red :~
+### The user will know when they have given a correct answer as it will turn green and the incorrect answer will turn red:~
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +86,7 @@ The URL will mostly work in all browsers. The preferred Browser is Google Chrome
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Bookmark a quote & ### View/Delete Quotes
+### Bookmark a quote & View/Delete Quotes
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -127,17 +128,16 @@ The URL will mostly work in all browsers. The preferred Browser is Google Chrome
 - [Kanye West Head (Neutral)](https://www.nicepng.com/maxp/u2e6r5q8r5q8e6i1/)
 - [Kanye West Head (Happy)](https://freepngimg.com/png/16386-kanye-west-png-hd)
 - [Kanye West Head (Upset)](https://www.nicepng.com/maxp/u2q8t4y3a9a9t4r5/)
-- [Uploaded by Scott Ward](https://freepngimg.com/author/scottward-7902)
 - [Kanye Perfection](https://thesource.com/wp-content/uploads/2020/06/GettyImages-1205196725-696x442-1-696x400.jpg)
 - [From The Source](https://thesource.com/2023/06/08/happy-46th-birthday-to-kanye-west/Magazine)
 - [Kanye's Reaction to Score](https://www.eonline.com/photos/12838/kanye-west-s-most-outrageous-quotes)
 - [Gold and silver background image](https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)
-- [Kanye West (Dissapointed)](https://people.com/style/kanye-west-feud-with-adidas-everything-to-know/)
+- [Kanye West (Disappointed)](https://people.com/style/kanye-west-feud-with-adidas-everything-to-know/)
 - [Kanye West (Shocked)](https://www.vanityfair.com/style/2016/06/kanye-wests-surprise-nyc-show-leads-to-complete-pandemonium)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Web API and Framworks Used
+### Web API and Frameworks Used
 
 - [jQuery](https://code.jquery.com/jquery-3.7.0.min.js)
 - [Materialize](https://materializecss.com/)
