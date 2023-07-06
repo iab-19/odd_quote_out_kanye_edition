@@ -1,4 +1,4 @@
-const numberOfQuestions = 4;  // number of questions per quiz
+const numberOfQuestions = 1;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
@@ -241,10 +241,12 @@ function endGame() {
     hideElement($('#loading-section'));
     updateLoadingBar(0);
 
-    const highscoreMessage = $('<p class="highscore-message">New Highscore!</p>');
-    if (newHighscore()) { scoreMessage.append(highscoreMessage); }
+    const highscoreMessage = $('<p class="highscore-message"></p>');
+    if (newHighscore()) { highscoreMessage.text('New Highscore!'); }
+    else { highscoreMessage.text(`Highscore: ${getHighscore()}`); }
+    scoreMessage.append(highscoreMessage);
 
-    const heading = $('<h2>');
+    const heading = $('<h2 style="margin-top: 2rem">');
     const subheading = $('<h3 class="center-align subtitle">');
     const imageContainer = $('<div class="image-container">');
 
