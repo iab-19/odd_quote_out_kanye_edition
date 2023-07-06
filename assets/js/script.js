@@ -1,4 +1,4 @@
-const numberOfQuestions = 10;  // number of questions per quiz
+const numberOfQuestions = 4;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
@@ -246,7 +246,7 @@ function endGame() {
 
     const heading = $('<h2>');
     const subheading = $('<h3 class="center-align subtitle">');
-    const image = $('<img>');
+    const imageContainer = $('<div class="image-container">');
 
     const s = (score !== 1) ? "s" : "";
 
@@ -254,31 +254,31 @@ function endGame() {
     if (score === numberOfQuestions) {
         heading.text(`Perfection. You scored all ${score} points.`);
         subheading.text(`You've come close to my level.`);
-        image.attr("src", "./assets/images/perfection-kanye.jpeg");
+        imageContainer.css('background-image', 'url("./assets/images/kanye-perfect-points.jpeg")');
     }
 
     // 70% correct
     else if (score >= numberOfQuestions * 0.7) {
         heading.text(`You scored ${score} points!`);
         subheading.text(`Kanye is impressed!`);
-        image.attr("src", "./assets/images/kanyeisImpressed.png");
+        imageContainer.css('background-image', 'url("./assets/images/kanye-high-points.png")');
     }
 
     // Above 0
     else if (score > 0) {
         heading.text(`You scored ${score} point${s}.`);
         subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
-        image.attr("src", "./assets/images/low-score.png");
+        imageContainer.css('background-image', 'url("./assets/images/kanye-low-points.jpg")');
     }
 
     // 0
     else {
         heading.text(`Your score is ${score}...`);
         subheading.text(`Come on now! How could you not know me and not want to be me?`);
-        image.attr("src", "./assets/images/zero-points.png");
+        imageContainer.css('background-image', 'url("./assets/images/kanye-zero-points.jpg")');
     }
 
-    scoreMessage.append(heading, subheading, image);
+    scoreMessage.append(heading, subheading, imageContainer);
 
     showElement($('#currentscore'));
     showElement($('body > footer'));
@@ -368,14 +368,14 @@ function generateQuestionSet(questionSet) {
 // updates loading bar display based on amount of quotes loaded
 function updateLoadingBar(forcePercent=undefined) {
     let percent = forcePercent;
-    
+
     if (!forcePercent) {
         // calculate percent
         const maxValue = numberOfOtherQuotes + 1;
         const currentValue = Math.min(kanyeQuotes.length, 1) + Math.min(otherQuotes.length, numberOfOtherQuotes);
         percent = Math.round(currentValue / maxValue * 100);
     }
-    
+
     // update display
     const loadingBar = $('#loading-section .determinate');
     loadingBar.attr('aria-valuenow', String(percent));
@@ -386,7 +386,7 @@ function updateLoadingBar(forcePercent=undefined) {
 // attempts to generate a new question set
 function startNewQuestion() {
     kanyeEmotion('neutral');
-    
+
     // check if last question is finished
     if (currentQuestion >= numberOfQuestions) {
         endGame();
@@ -397,7 +397,7 @@ function startNewQuestion() {
 
     // if enough quotes are loaded for 1 new question
     const enoughQuotesLoaded = (kanyeQuotes.length >= 1) && (otherQuotes.length >= numberOfOtherQuotes);
-    
+
     if (enoughQuotesLoaded) {
         // stop waiting for loading
         if (questionLoadInterval) {
@@ -493,7 +493,7 @@ function init() {
     $('.saved-quotes-btn').on("click", displaySavedQuotes);
     $('.next-btn').on('click', startNewQuestion);
     $('#play-again').on("click", startGame);
-    
+
     updateProgressBar(0);
 }
 
