@@ -32,7 +32,6 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    /* Image from url(https://www.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_18717112.htm#query=light%20background&position=9&from_view=keyword&track=ais)*/
 }
 
 main {
@@ -145,7 +144,6 @@ blockquote {
 
 #kanye-edition-text {
     margin-top: 0;
-    /* transform: rotate(355deg); */
 }
 
 #homepage .menu {
@@ -157,7 +155,6 @@ blockquote {
 .menu button {
     width: 15%;
     min-width: 10rem;
-    /* height: 40px; */
     background-color: var(--main-orange);
     color: white;
     margin: 10px;
@@ -180,7 +177,6 @@ blockquote {
 
 .menu button:hover,
 .menu button:focus {
-    /* color: black; */
     background-color: var(--light-orange);
     cursor: pointer;
 }
@@ -202,7 +198,13 @@ blockquote {
     margin: 40px auto;
 }
 
+
 /* MODALS */
+
+/* Modal close buttons */
+.modal-footer a[href="#!"] {
+    text-transform: none;
+}
 
 .saved-quotes-container {
     text-align: left;
@@ -285,7 +287,6 @@ blockquote {
     max-width: 500px;
     margin: 0 auto;
     overflow: visible;
-    
 }
 
 .kanye-head {
@@ -336,10 +337,6 @@ blockquote {
     content: '"';
 }
 
-/* .quote-card {
-    border: 3px solid transparent;
-} */
-
 .quote-card .row {
     margin-bottom: 0px;
 }
@@ -362,7 +359,6 @@ blockquote {
     float: right;
     background-color: transparent;
     border: none;
-
 }
 
 .save-quote-btn:active,
@@ -384,10 +380,10 @@ blockquote {
     color: var(--main-orange);
 }
 
-/* Change color of border if selected quote is corrrect or incorrect */
 .correct-answer {
     border: 3px solid var(--correct-green);
 }
+
 .incorrect-answer {
     border: 3px solid var(--incorrect-red);
 }
@@ -399,7 +395,7 @@ blockquote {
 
 /* END PAGE */
 
-.endPageButton {
+.end-page-btn {
     margin-bottom:10px;
     background-color:var(--main-orange);
     padding-top:10px;
@@ -447,11 +443,11 @@ blockquote {
         font-weight: 300;
     }
 
-    .endPageButton {
+    .end-page-btn {
         margin: bottom 0;
-        margin-top:0;
-        padding-top:3px;
-        padding-bottom:3px;
+        margin-top: 0;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
 }
 

@@ -1,4 +1,4 @@
-const numberOfQuestions = 1;  // number of questions per quiz
+const numberOfQuestions = 10;  // number of questions per quiz
 const numberOfOtherQuotes = 3;  // number of other (non-Kanye) quotes per question
 const quoteCharacterCap = 80;  // maximum number of characters any quote can have (for presentation)
 
@@ -12,6 +12,7 @@ const waitForQuestionLoadTime = 100;  // number of milliseconds to wait before c
 var otherQuotes = [];  // contains the normal quotes that will be used in the quiz
 var kanyeQuotes = [];  // contains the Kanye West quotes that will be used in the quiz
 
+
 class Quote {
     constructor(text, author) {
         this.text = text;
@@ -20,11 +21,13 @@ class Quote {
 }
 
 
+// hides a given element, removing it from document outline
 function hideElement(element) {
     $(element).addClass('hide');
 }
 
 
+// shows a given element that was removed from rendering in document outline
 function showElement(element) {
     $(element).removeClass('hide');
 }
@@ -76,13 +79,10 @@ function fetchOtherQuotes() {
             return response.json();
         })
         .then(function(data) {
-            // console.log(data);
             otherQuotes = otherQuotes.concat(filterQuotes(data.data, otherQuotes));
 
             // fetch more quotes if there aren't enough to fill all questions
             if (otherQuotes.length < numberOfOtherQuotes * (numberOfQuestions - currentQuestion)) { fetchOtherQuotes(); }
-
-            // else { console.log("Other Quotes:", otherQuotes); }
         });
 }
 
@@ -106,8 +106,6 @@ function fetchKanyeQuotes() {
 
             // fetch more quotes if there aren't enough to fill all questions
             if (kanyeQuotes.length < numberOfQuestions - currentQuestion) { fetchKanyeQuotes(); }
-
-            // else { console.log("Kanye Quotes:", kanyeQuotes); }
         });
 }
 
@@ -269,14 +267,14 @@ function endGame() {
     // Above 0
     else if (score > 0) {
         heading.text(`You scored ${score} point${s}.`);
-        subheading.text("I'm like a machine. I'm a robot. You cannot offend a robot");
+        subheading.text("I'm a robot. You cannot offend a robot.");
         imageContainer.css('background-image', 'url("./assets/images/kanye-low-points.jpg")');
     }
 
     // 0
     else {
         heading.text(`Your score is ${score}...`);
-        subheading.text(`Come on now! How could you not know me and not want to be me?`);
+        subheading.text(`How could you not know me and not want to be me?`);
         imageContainer.css('background-image', 'url("./assets/images/kanye-zero-points.jpg")');
     }
 
@@ -332,8 +330,6 @@ function generateQuestionSetArray() {
 
 // generates a question set in the DOM
 function generateQuestionSet(questionSet) {
-    // console.log("Question Set:", questionSet);
-
     for (quote of questionSet) {
         // create quote card
         const quoteCard = $(`
