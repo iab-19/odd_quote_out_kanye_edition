@@ -425,6 +425,12 @@ blockquote {
     align-items: center;
 }
 
+.highscore-message {
+    margin-bottom: 0;
+    font-size: 150%;
+    color: var(--main-orange);
+}
+
 
 /* MEDIA QUERIES */
 
@@ -433,7 +439,6 @@ blockquote {
         margin: 0;
     }
 
-    strong,
     h1, h2 {
         font-weight: 350;
     }
